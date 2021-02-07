@@ -380,6 +380,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="_Archive\cart.html" />
+    <Content Include="_Archive\checkout.html" />
     <Content Include="_Archive\css\custom.css" />
     <Content Include="_Archive\css\style.blue.css" />
     <Content Include="_Archive\css\style.blue.min.css" />
@@ -397,6 +399,7 @@
     <Content Include="_Archive\css\style.sea.min.css" />
     <Content Include="_Archive\css\style.violet.css" />
     <Content Include="_Archive\css\style.violet.min.css" />
+    <Content Include="_Archive\detail.html" />
     <Content Include="_Archive\icons\demo.html" />
     <Content Include="_Archive\icons\orion-svg-sprite.svg" />
     <Content Include="_Archive\icons\styles.css" />
@@ -434,6 +437,7 @@
     <Content Include="_Archive\index.html" />
     <Content Include="_Archive\js\demo.js" />
     <Content Include="_Archive\js\front.js" />
+    <Content Include="_Archive\shop.html" />
     <Content Include="_Archive\vendor\bootstrap-select\css\bootstrap-select.css" />
     <Content Include="_Archive\vendor\bootstrap-select\css\bootstrap-select.min.css" />
     <Content Include="_Archive\vendor\bootstrap-select\js\bootstrap-select.js" />
@@ -664,6 +668,8 @@
     <Content Include="_Archive\vendor\node-sass\vendor\linux-x64-64\binding.node" />
     <Content Include="_Archive\vendor\nouislider\CHANGELOG.MD" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Shop.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
