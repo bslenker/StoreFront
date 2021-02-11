@@ -52,6 +52,9 @@
                             <li class="nav-item">
                                 <!-- Link--><a class="nav-link" href="@Url.Action("Detail" , "Home")">Product detail</a>
                             </li>
+                            <li class="nav-item">
+                                <!-- Link--><a class="nav-link" href="@Url.Action("Contact" , "Home")">Contact</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                                 <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a class="dropdown-item border-0 transition-link" href="detail.html">Product detail</a><a class="dropdown-item border-0 transition-link" href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link" href="checkout.html">Checkout</a></div>
@@ -60,8 +63,15 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="cart.html"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(0)</small></a></li>
                             <li class="nav-item"><a class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                            <li class="nav-item">@Html.Partial("_LoginPartial") @*<i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>*@
                         </ul>
+                        @*@Html.Partial("_LoginPartial")*@
+                        @*@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                                <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                            }*@
+
                     </div>
                 </nav>
             </div>
@@ -375,6 +385,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6 class="text-uppercase mb-3">Admin List</h6>
+                        <ul class="list-unstyled mb-0">
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                                <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
                 <div class="border-top pt-4" style="border-color: #1d1d1d !important">
                     <div class="row">
                         <div class="col-lg-6">
@@ -422,7 +444,7 @@
             // while using file:// protocol
             // pls don't forget to change to your domain :)
             injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');</script>
-        
+
         @* active nav bar  *@
         <script>
             $(function () {

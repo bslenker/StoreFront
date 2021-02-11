@@ -1,0 +1,957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StoreFrontModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="LName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="24" />
+          <Property Name="Address" Type="nvarchar" MaxLength="60" />
+          <Property Name="City" Type="nvarchar" MaxLength="15" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="DirectReportID" Type="int" />
+        </EntityType>
+        <EntityType Name="FrostHardys">
+          <Key>
+            <PropertyRef Name="FrostID" />
+          </Key>
+          <Property Name="FrostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HardyType" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeneTypes">
+          <Key>
+            <PropertyRef Name="GeneID" />
+          </Key>
+          <Property Name="GeneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GeneName" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdealTemps">
+          <Key>
+            <PropertyRef Name="TempID" />
+          </Key>
+          <Property Name="TempID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Temp" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LifeCycles">
+          <Key>
+            <PropertyRef Name="CycleID" />
+          </Key>
+          <Property Name="CycleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CycleType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MinFullSuns">
+          <Key>
+            <PropertyRef Name="SunID" />
+          </Key>
+          <Property Name="SunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SunTime" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlantSpacings">
+          <Key>
+            <PropertyRef Name="SpacingID" />
+          </Key>
+          <Property Name="SpacingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Spacing" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seasons">
+          <Key>
+            <PropertyRef Name="SeasonID" />
+          </Key>
+          <Property Name="SeasonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeasonType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeedCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeedDepths">
+          <Key>
+            <PropertyRef Name="DepthID" />
+          </Key>
+          <Property Name="DepthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Depth" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seeds">
+          <Key>
+            <PropertyRef Name="SeedID" />
+          </Key>
+          <Property Name="SeedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommonName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ScientificName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="PlantingInstructions" Type="nvarchar(max)" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="SpacingID" Type="int" Nullable="false" />
+          <Property Name="UnitsID" Type="int" Nullable="false" />
+          <Property Name="CycleID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="SproutID" Type="int" Nullable="false" />
+          <Property Name="SeasonID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SunID" Type="int" Nullable="false" />
+          <Property Name="TempID" Type="int" Nullable="false" />
+          <Property Name="GeneID" Type="int" Nullable="false" />
+          <Property Name="DepthID" Type="int" Nullable="false" />
+          <Property Name="FrostID" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="image" />
+        </EntityType>
+        <EntityType Name="SproutIns">
+          <Key>
+            <PropertyRef Name="SproutID" />
+          </Key>
+          <Property Name="SproutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SproutDays" Type="nvarchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitsPerPackets">
+          <Key>
+            <PropertyRef Name="UnitsID" />
+          </Key>
+          <Property Name="UnitsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="DirectReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_FrostHardys">
+          <End Role="FrostHardys" Type="Self.FrostHardys" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FrostHardys">
+              <PropertyRef Name="FrostID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="FrostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_GeneTypes">
+          <End Role="GeneTypes" Type="Self.GeneTypes" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneTypes">
+              <PropertyRef Name="GeneID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="GeneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_IdealTemps">
+          <End Role="IdealTemps" Type="Self.IdealTemps" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdealTemps">
+              <PropertyRef Name="TempID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="TempID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_LifeCycles">
+          <End Role="LifeCycles" Type="Self.LifeCycles" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LifeCycles">
+              <PropertyRef Name="CycleID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="CycleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_MinFullSuns">
+          <End Role="MinFullSuns" Type="Self.MinFullSuns" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MinFullSuns">
+              <PropertyRef Name="SunID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_PlantSpacings">
+          <End Role="PlantSpacings" Type="Self.PlantSpacings" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantSpacings">
+              <PropertyRef Name="SpacingID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SpacingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_Seasons">
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seasons">
+              <PropertyRef Name="SeasonID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SeasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_SeedCategories">
+          <End Role="SeedCategories" Type="Self.SeedCategories" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeedCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_SeedDepths">
+          <End Role="SeedDepths" Type="Self.SeedDepths" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeedDepths">
+              <PropertyRef Name="DepthID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="DepthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_SproutIns">
+          <End Role="SproutIns" Type="Self.SproutIns" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SproutIns">
+              <PropertyRef Name="SproutID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SproutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_UnitsPerPackets">
+          <End Role="UnitsPerPackets" Type="Self.UnitsPerPackets" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitsPerPackets">
+              <PropertyRef Name="UnitsID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="UnitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontModelStoreContainer">
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FrostHardys" EntityType="Self.FrostHardys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneTypes" EntityType="Self.GeneTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdealTemps" EntityType="Self.IdealTemps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LifeCycles" EntityType="Self.LifeCycles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MinFullSuns" EntityType="Self.MinFullSuns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlantSpacings" EntityType="Self.PlantSpacings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seasons" EntityType="Self.Seasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeedCategories" EntityType="Self.SeedCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeedDepths" EntityType="Self.SeedDepths" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seeds" EntityType="Self.Seeds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SproutIns" EntityType="Self.SproutIns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitsPerPackets" EntityType="Self.UnitsPerPackets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_Departments" Association="Self.FK_Employees_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_FrostHardys" Association="Self.FK_Seeds_FrostHardys">
+            <End Role="FrostHardys" EntitySet="FrostHardys" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_GeneTypes" Association="Self.FK_Seeds_GeneTypes">
+            <End Role="GeneTypes" EntitySet="GeneTypes" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_IdealTemps" Association="Self.FK_Seeds_IdealTemps">
+            <End Role="IdealTemps" EntitySet="IdealTemps" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_LifeCycles" Association="Self.FK_Seeds_LifeCycles">
+            <End Role="LifeCycles" EntitySet="LifeCycles" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_MinFullSuns" Association="Self.FK_Seeds_MinFullSuns">
+            <End Role="MinFullSuns" EntitySet="MinFullSuns" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_PlantSpacings" Association="Self.FK_Seeds_PlantSpacings">
+            <End Role="PlantSpacings" EntitySet="PlantSpacings" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_Products" Association="Self.FK_Seeds_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_Seasons" Association="Self.FK_Seeds_Seasons">
+            <End Role="Seasons" EntitySet="Seasons" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_SeedCategories" Association="Self.FK_Seeds_SeedCategories">
+            <End Role="SeedCategories" EntitySet="SeedCategories" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_SeedDepths" Association="Self.FK_Seeds_SeedDepths">
+            <End Role="SeedDepths" EntitySet="SeedDepths" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_SproutIns" Association="Self.FK_Seeds_SproutIns">
+            <End Role="SproutIns" EntitySet="SproutIns" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_UnitsPerPackets" Association="Self.FK_Seeds_UnitsPerPackets">
+            <End Role="UnitsPerPackets" EntitySet="UnitsPerPackets" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreFrontModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Departments" FromRole="Departments" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="DirectReportID" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Employees_Departments" FromRole="Employees" ToRole="Departments" />
+          <NavigationProperty Name="Employees1" Relationship="Self.FK_Employees_Employees" FromRole="Employees" ToRole="Employees1" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employees_Employees" FromRole="Employees1" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="FrostHardy">
+          <Key>
+            <PropertyRef Name="FrostID" />
+          </Key>
+          <Property Name="FrostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HardyType" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_FrostHardys" FromRole="FrostHardys" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="GeneType">
+          <Key>
+            <PropertyRef Name="GeneID" />
+          </Key>
+          <Property Name="GeneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GeneName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_GeneTypes" FromRole="GeneTypes" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="IdealTemp">
+          <Key>
+            <PropertyRef Name="TempID" />
+          </Key>
+          <Property Name="TempID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Temp" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_IdealTemps" FromRole="IdealTemps" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="LifeCycle">
+          <Key>
+            <PropertyRef Name="CycleID" />
+          </Key>
+          <Property Name="CycleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CycleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_LifeCycles" FromRole="LifeCycles" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="MinFullSun">
+          <Key>
+            <PropertyRef Name="SunID" />
+          </Key>
+          <Property Name="SunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SunTime" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_MinFullSuns" FromRole="MinFullSuns" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="PlantSpacing">
+          <Key>
+            <PropertyRef Name="SpacingID" />
+          </Key>
+          <Property Name="SpacingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Spacing" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_PlantSpacings" FromRole="PlantSpacings" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_Products" FromRole="Products" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="SeasonID" />
+          </Key>
+          <Property Name="SeasonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeasonType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_Seasons" FromRole="Seasons" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="SeedCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_SeedCategories" FromRole="SeedCategories" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="SeedDepth">
+          <Key>
+            <PropertyRef Name="DepthID" />
+          </Key>
+          <Property Name="DepthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Depth" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_SeedDepths" FromRole="SeedDepths" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="Seed">
+          <Key>
+            <PropertyRef Name="SeedID" />
+          </Key>
+          <Property Name="SeedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ScientificName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlantingInstructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SpacingID" Type="Int32" Nullable="false" />
+          <Property Name="UnitsID" Type="Int32" Nullable="false" />
+          <Property Name="CycleID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="SproutID" Type="Int32" Nullable="false" />
+          <Property Name="SeasonID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SunID" Type="Int32" Nullable="false" />
+          <Property Name="TempID" Type="Int32" Nullable="false" />
+          <Property Name="GeneID" Type="Int32" Nullable="false" />
+          <Property Name="DepthID" Type="Int32" Nullable="false" />
+          <Property Name="FrostID" Type="Int32" Nullable="false" />
+          <Property Name="ImageURL" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="FrostHardy" Relationship="Self.FK_Seeds_FrostHardys" FromRole="Seeds" ToRole="FrostHardys" />
+          <NavigationProperty Name="GeneType" Relationship="Self.FK_Seeds_GeneTypes" FromRole="Seeds" ToRole="GeneTypes" />
+          <NavigationProperty Name="IdealTemp" Relationship="Self.FK_Seeds_IdealTemps" FromRole="Seeds" ToRole="IdealTemps" />
+          <NavigationProperty Name="LifeCycle" Relationship="Self.FK_Seeds_LifeCycles" FromRole="Seeds" ToRole="LifeCycles" />
+          <NavigationProperty Name="MinFullSun" Relationship="Self.FK_Seeds_MinFullSuns" FromRole="Seeds" ToRole="MinFullSuns" />
+          <NavigationProperty Name="PlantSpacing" Relationship="Self.FK_Seeds_PlantSpacings" FromRole="Seeds" ToRole="PlantSpacings" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Seeds_Products" FromRole="Seeds" ToRole="Products" />
+          <NavigationProperty Name="Season" Relationship="Self.FK_Seeds_Seasons" FromRole="Seeds" ToRole="Seasons" />
+          <NavigationProperty Name="SeedCategory" Relationship="Self.FK_Seeds_SeedCategories" FromRole="Seeds" ToRole="SeedCategories" />
+          <NavigationProperty Name="SeedDepth" Relationship="Self.FK_Seeds_SeedDepths" FromRole="Seeds" ToRole="SeedDepths" />
+          <NavigationProperty Name="SproutIn" Relationship="Self.FK_Seeds_SproutIns" FromRole="Seeds" ToRole="SproutIns" />
+          <NavigationProperty Name="UnitsPerPacket" Relationship="Self.FK_Seeds_UnitsPerPackets" FromRole="Seeds" ToRole="UnitsPerPackets" />
+        </EntityType>
+        <EntityType Name="SproutIn">
+          <Key>
+            <PropertyRef Name="SproutID" />
+          </Key>
+          <Property Name="SproutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SproutDays" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_SproutIns" FromRole="SproutIns" ToRole="Seeds" />
+        </EntityType>
+        <EntityType Name="UnitsPerPacket">
+          <Key>
+            <PropertyRef Name="UnitsID" />
+          </Key>
+          <Property Name="UnitsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Seeds" Relationship="Self.FK_Seeds_UnitsPerPackets" FromRole="UnitsPerPackets" ToRole="Seeds" />
+        </EntityType>
+        <Association Name="FK_Employees_Departments">
+          <End Role="Departments" Type="Self.Department" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="DirectReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_FrostHardys">
+          <End Role="FrostHardys" Type="Self.FrostHardy" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FrostHardys">
+              <PropertyRef Name="FrostID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="FrostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_GeneTypes">
+          <End Role="GeneTypes" Type="Self.GeneType" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneTypes">
+              <PropertyRef Name="GeneID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="GeneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_IdealTemps">
+          <End Role="IdealTemps" Type="Self.IdealTemp" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdealTemps">
+              <PropertyRef Name="TempID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="TempID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_LifeCycles">
+          <End Role="LifeCycles" Type="Self.LifeCycle" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LifeCycles">
+              <PropertyRef Name="CycleID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="CycleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_MinFullSuns">
+          <End Role="MinFullSuns" Type="Self.MinFullSun" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MinFullSuns">
+              <PropertyRef Name="SunID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_PlantSpacings">
+          <End Role="PlantSpacings" Type="Self.PlantSpacing" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantSpacings">
+              <PropertyRef Name="SpacingID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SpacingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_Products">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_Seasons">
+          <End Role="Seasons" Type="Self.Season" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seasons">
+              <PropertyRef Name="SeasonID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SeasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_SeedCategories">
+          <End Role="SeedCategories" Type="Self.SeedCategory" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeedCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_SeedDepths">
+          <End Role="SeedDepths" Type="Self.SeedDepth" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeedDepths">
+              <PropertyRef Name="DepthID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="DepthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_SproutIns">
+          <End Role="SproutIns" Type="Self.SproutIn" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SproutIns">
+              <PropertyRef Name="SproutID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="SproutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seeds_UnitsPerPackets">
+          <End Role="UnitsPerPackets" Type="Self.UnitsPerPacket" Multiplicity="1" />
+          <End Role="Seeds" Type="Self.Seed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitsPerPackets">
+              <PropertyRef Name="UnitsID" />
+            </Principal>
+            <Dependent Role="Seeds">
+              <PropertyRef Name="UnitsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="FrostHardys" EntityType="Self.FrostHardy" />
+          <EntitySet Name="GeneTypes" EntityType="Self.GeneType" />
+          <EntitySet Name="IdealTemps" EntityType="Self.IdealTemp" />
+          <EntitySet Name="LifeCycles" EntityType="Self.LifeCycle" />
+          <EntitySet Name="MinFullSuns" EntityType="Self.MinFullSun" />
+          <EntitySet Name="PlantSpacings" EntityType="Self.PlantSpacing" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Seasons" EntityType="Self.Season" />
+          <EntitySet Name="SeedCategories" EntityType="Self.SeedCategory" />
+          <EntitySet Name="SeedDepths" EntityType="Self.SeedDepth" />
+          <EntitySet Name="Seeds" EntityType="Self.Seed" />
+          <EntitySet Name="SproutIns" EntityType="Self.SproutIn" />
+          <EntitySet Name="UnitsPerPackets" EntityType="Self.UnitsPerPacket" />
+          <AssociationSet Name="FK_Employees_Departments" Association="Self.FK_Employees_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_FrostHardys" Association="Self.FK_Seeds_FrostHardys">
+            <End Role="FrostHardys" EntitySet="FrostHardys" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_GeneTypes" Association="Self.FK_Seeds_GeneTypes">
+            <End Role="GeneTypes" EntitySet="GeneTypes" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_IdealTemps" Association="Self.FK_Seeds_IdealTemps">
+            <End Role="IdealTemps" EntitySet="IdealTemps" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_LifeCycles" Association="Self.FK_Seeds_LifeCycles">
+            <End Role="LifeCycles" EntitySet="LifeCycles" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_MinFullSuns" Association="Self.FK_Seeds_MinFullSuns">
+            <End Role="MinFullSuns" EntitySet="MinFullSuns" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_PlantSpacings" Association="Self.FK_Seeds_PlantSpacings">
+            <End Role="PlantSpacings" EntitySet="PlantSpacings" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_Products" Association="Self.FK_Seeds_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_Seasons" Association="Self.FK_Seeds_Seasons">
+            <End Role="Seasons" EntitySet="Seasons" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_SeedCategories" Association="Self.FK_Seeds_SeedCategories">
+            <End Role="SeedCategories" EntitySet="SeedCategories" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_SeedDepths" Association="Self.FK_Seeds_SeedDepths">
+            <End Role="SeedDepths" EntitySet="SeedDepths" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_SproutIns" Association="Self.FK_Seeds_SproutIns">
+            <End Role="SproutIns" EntitySet="SproutIns" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seeds_UnitsPerPackets" Association="Self.FK_Seeds_UnitsPerPackets">
+            <End Role="UnitsPerPackets" EntitySet="UnitsPerPackets" />
+            <End Role="Seeds" EntitySet="Seeds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreFrontModelStoreContainer" CdmEntityContainer="StoreFrontEntities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="StoreFrontModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="StoreFrontModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DirectReportID" ColumnName="DirectReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FrostHardys">
+            <EntityTypeMapping TypeName="StoreFrontModel.FrostHardy">
+              <MappingFragment StoreEntitySet="FrostHardys">
+                <ScalarProperty Name="FrostID" ColumnName="FrostID" />
+                <ScalarProperty Name="HardyType" ColumnName="HardyType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneTypes">
+            <EntityTypeMapping TypeName="StoreFrontModel.GeneType">
+              <MappingFragment StoreEntitySet="GeneTypes">
+                <ScalarProperty Name="GeneID" ColumnName="GeneID" />
+                <ScalarProperty Name="GeneName" ColumnName="GeneName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdealTemps">
+            <EntityTypeMapping TypeName="StoreFrontModel.IdealTemp">
+              <MappingFragment StoreEntitySet="IdealTemps">
+                <ScalarProperty Name="TempID" ColumnName="TempID" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LifeCycles">
+            <EntityTypeMapping TypeName="StoreFrontModel.LifeCycle">
+              <MappingFragment StoreEntitySet="LifeCycles">
+                <ScalarProperty Name="CycleID" ColumnName="CycleID" />
+                <ScalarProperty Name="CycleType" ColumnName="CycleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MinFullSuns">
+            <EntityTypeMapping TypeName="StoreFrontModel.MinFullSun">
+              <MappingFragment StoreEntitySet="MinFullSuns">
+                <ScalarProperty Name="SunID" ColumnName="SunID" />
+                <ScalarProperty Name="SunTime" ColumnName="SunTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlantSpacings">
+            <EntityTypeMapping TypeName="StoreFrontModel.PlantSpacing">
+              <MappingFragment StoreEntitySet="PlantSpacings">
+                <ScalarProperty Name="SpacingID" ColumnName="SpacingID" />
+                <ScalarProperty Name="Spacing" ColumnName="Spacing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="StoreFrontModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seasons">
+            <EntityTypeMapping TypeName="StoreFrontModel.Season">
+              <MappingFragment StoreEntitySet="Seasons">
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+                <ScalarProperty Name="SeasonType" ColumnName="SeasonType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeedCategories">
+            <EntityTypeMapping TypeName="StoreFrontModel.SeedCategory">
+              <MappingFragment StoreEntitySet="SeedCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeedDepths">
+            <EntityTypeMapping TypeName="StoreFrontModel.SeedDepth">
+              <MappingFragment StoreEntitySet="SeedDepths">
+                <ScalarProperty Name="DepthID" ColumnName="DepthID" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seeds">
+            <EntityTypeMapping TypeName="StoreFrontModel.Seed">
+              <MappingFragment StoreEntitySet="Seeds">
+                <ScalarProperty Name="SeedID" ColumnName="SeedID" />
+                <ScalarProperty Name="CommonName" ColumnName="CommonName" />
+                <ScalarProperty Name="ScientificName" ColumnName="ScientificName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PlantingInstructions" ColumnName="PlantingInstructions" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="SpacingID" ColumnName="SpacingID" />
+                <ScalarProperty Name="UnitsID" ColumnName="UnitsID" />
+                <ScalarProperty Name="CycleID" ColumnName="CycleID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="SproutID" ColumnName="SproutID" />
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SunID" ColumnName="SunID" />
+                <ScalarProperty Name="TempID" ColumnName="TempID" />
+                <ScalarProperty Name="GeneID" ColumnName="GeneID" />
+                <ScalarProperty Name="DepthID" ColumnName="DepthID" />
+                <ScalarProperty Name="FrostID" ColumnName="FrostID" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SproutIns">
+            <EntityTypeMapping TypeName="StoreFrontModel.SproutIn">
+              <MappingFragment StoreEntitySet="SproutIns">
+                <ScalarProperty Name="SproutID" ColumnName="SproutID" />
+                <ScalarProperty Name="SproutDays" ColumnName="SproutDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitsPerPackets">
+            <EntityTypeMapping TypeName="StoreFrontModel.UnitsPerPacket">
+              <MappingFragment StoreEntitySet="UnitsPerPackets">
+                <ScalarProperty Name="UnitsID" ColumnName="UnitsID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

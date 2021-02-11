@@ -140,7 +140,8 @@ namespace StoreFront.UI.MVC.Controllers
             return View();
         }
 
-        //
+        //Update the Register() in the Account Controller to put newly created users in the customer role.
+        //Comment out or remove the Email Confirmation and replace with a ReturnRedirectToAction("YourDesiredView")
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -153,11 +154,13 @@ namespace StoreFront.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    //ViewBag.Link = callbackUrl;
+                    //return View("DisplayEmail");
+                    UserManager.AddToRole(user.Id, "Customer");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -168,17 +171,17 @@ namespace StoreFront.UI.MVC.Controllers
 
         //
         // GET: /Account/ConfirmEmail
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            if (userId == null || code == null)
-            {
-                return View("Error");
-            }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        //{
+        //    if (userId == null || code == null)
+        //    {
+        //        return View("Error");
+        //    }
+        //    var result = await UserManager.ConfirmEmailAsync(userId, code);
+        //    return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        //}
 
         //
         // GET: /Account/ForgotPassword

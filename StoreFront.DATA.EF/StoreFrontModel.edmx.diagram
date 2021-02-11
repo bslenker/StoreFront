@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52a5df1557f54352abc0bbcfbb086e3f" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="StoreFrontModel.Department" Width="1.5" PointX="18.875" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Employee" Width="1.5" PointX="21.625" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.FrostHardy" Width="1.5" PointX="16.625" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.GeneType" Width="1.5" PointX="9" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.IdealTemp" Width="1.5" PointX="8.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.LifeCycle" Width="1.5" PointX="8.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.MinFullSun" Width="1.5" PointX="8.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.PlantSpacing" Width="1.5" PointX="14" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Product" Width="1.5" PointX="14.375" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Season" Width="1.5" PointX="14.125" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.SeedCategory" Width="1.5" PointX="16.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.SeedDepth" Width="1.5" PointX="6.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.Seed" Width="1.75" PointX="11.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.SproutIn" Width="1.5" PointX="7" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontModel.UnitsPerPacket" Width="1.5" PointX="16.125" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="StoreFrontModel.FK_Employees_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Employees_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_FrostHardys" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_GeneTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_IdealTemps" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_LifeCycles" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_MinFullSuns" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_PlantSpacings" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_Seasons" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_SeedCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_SeedDepths" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_SproutIns" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontModel.FK_Seeds_UnitsPerPackets" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
