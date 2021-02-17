@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StoreFrontModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StoreFrontModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="DepartmentID" />
@@ -119,7 +119,7 @@
           <Property Name="GeneID" Type="int" Nullable="false" />
           <Property Name="DepthID" Type="int" Nullable="false" />
           <Property Name="FrostID" Type="int" Nullable="false" />
-          <Property Name="ImageURL" Type="image" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SproutIns">
           <Key>
@@ -376,8 +376,7 @@
             <End Role="Seeds" EntitySet="Seeds" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StoreFrontModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -509,7 +508,6 @@
           <Property Name="GeneID" Type="Int32" Nullable="false" />
           <Property Name="DepthID" Type="Int32" Nullable="false" />
           <Property Name="FrostID" Type="Int32" Nullable="false" />
-          <Property Name="ImageURL" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="FrostHardy" Relationship="Self.FK_Seeds_FrostHardys" FromRole="Seeds" ToRole="FrostHardys" />
           <NavigationProperty Name="GeneType" Relationship="Self.FK_Seeds_GeneTypes" FromRole="Seeds" ToRole="GeneTypes" />
           <NavigationProperty Name="IdealTemp" Relationship="Self.FK_Seeds_IdealTemps" FromRole="Seeds" ToRole="IdealTemps" />
@@ -522,6 +520,7 @@
           <NavigationProperty Name="SeedDepth" Relationship="Self.FK_Seeds_SeedDepths" FromRole="Seeds" ToRole="SeedDepths" />
           <NavigationProperty Name="SproutIn" Relationship="Self.FK_Seeds_SproutIns" FromRole="Seeds" ToRole="SproutIns" />
           <NavigationProperty Name="UnitsPerPacket" Relationship="Self.FK_Seeds_UnitsPerPackets" FromRole="Seeds" ToRole="UnitsPerPackets" />
+          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SproutIn">
           <Key>
@@ -893,6 +892,7 @@
           <EntitySetMapping Name="Seeds">
             <EntityTypeMapping TypeName="StoreFrontModel.Seed">
               <MappingFragment StoreEntitySet="Seeds">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="SeedID" ColumnName="SeedID" />
                 <ScalarProperty Name="CommonName" ColumnName="CommonName" />
                 <ScalarProperty Name="ScientificName" ColumnName="ScientificName" />
@@ -911,7 +911,6 @@
                 <ScalarProperty Name="GeneID" ColumnName="GeneID" />
                 <ScalarProperty Name="DepthID" ColumnName="DepthID" />
                 <ScalarProperty Name="FrostID" ColumnName="FrostID" />
-                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -171,6 +171,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\SeedsController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,6 +183,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilites\ImageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\custom.css" />
@@ -271,6 +273,7 @@
     <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\Cudu.jpg" />
     <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\Ed-Schultz-Cudu-crossed-with-Papas-White-2017-talk-with-john-ab-eds-corn-LSS-000_7634.jpg" />
     <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\Ed-Schultz-Cudu-crossed-with-Papas-White-2017-talk-with-john-ab-eds-corn-LSS-000_7635.jpg" />
+    <Content Include="Content\img\VeggiesPictures\NoImage.png" />
     <Content Include="Content\img\VeggiesPictures\Romanesco Italia Broccoli\Alaska-Remple-Farms-Broccoli-Romanesco-DSC03676.jpg" />
     <Content Include="Content\img\VeggiesPictures\Romanesco Italia Broccoli\broccoli-romanesco-italia-lss-dsc_8154.jpg" />
     <Content Include="Content\js\demo.js" />
@@ -710,6 +713,12 @@
     <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
+    <Content Include="Views\Seeds\Create.cshtml" />
+    <Content Include="Views\Seeds\Delete.cshtml" />
+    <Content Include="Views\Seeds\Details.cshtml" />
+    <Content Include="Views\Seeds\Edit.cshtml" />
+    <Content Include="Views\Seeds\Index.cshtml" />
+    <Content Include="Views\Seeds\IndexMaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -730,6 +739,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreFront.DATA.EF\StoreFront.DATA.EF.csproj">
+      <Project>{3735979a-d729-4e03-8585-e0186da27eb3}</Project>
+      <Name>StoreFront.DATA.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,135 @@
+﻿@model IEnumerable<StoreFront.DATA.EF.Seed>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CommonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScientificName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlantingInstructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrostHardy.FrostID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneType.GeneName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdealTemp.Temp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LifeCycle.CycleType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinFullSun.SunTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlantSpacing.Spacing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Season.SeasonType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeedCategory.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeedDepth.DepthID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SproutIn.SproutDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsPerPacket.UnitsID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommonName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScientificName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlantingInstructions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrostHardy.FrostID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeneType.GeneName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdealTemp.Temp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LifeCycle.CycleType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinFullSun.SunTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlantSpacing.Spacing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Season.SeasonType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeedCategory.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeedDepth.DepthID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SproutIn.SproutDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsPerPacket.UnitsID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SeedID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SeedID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SeedID })
+        </td>
+    </tr>
+}
+
+</table>*@

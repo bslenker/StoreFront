@@ -1,0 +1,162 @@
+﻿@model StoreFront.DATA.EF.Seed
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Seed</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CommonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommonName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScientificName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScientificName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantingInstructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlantingInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrostHardy.FrostID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrostHardy.FrostID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneType.GeneName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneType.GeneName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdealTemp.Temp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdealTemp.Temp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LifeCycle.CycleType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LifeCycle.CycleType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinFullSun.SunTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinFullSun.SunTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantSpacing.Spacing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlantSpacing.Spacing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Season.SeasonType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Season.SeasonType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeedCategory.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeedCategory.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeedDepth.DepthID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeedDepth.DepthID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SproutIn.SproutDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SproutIn.SproutDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsPerPacket.UnitsID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsPerPacket.UnitsID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SeedID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -192,4 +192,9 @@ namespace StoreFront.DATA.EF//.Metadata
     [MetadataType(typeof(UnitsPerPacketMetadata))]
     public partial class UnitsPerPacket { }
     #endregion
+
+    #region ImageUrl
+
+    //public
+    #endregion
 }//end namespace

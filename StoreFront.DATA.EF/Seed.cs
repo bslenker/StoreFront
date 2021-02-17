@@ -32,7 +32,7 @@ namespace StoreFront.DATA.EF
         public int GeneID { get; set; }
         public int DepthID { get; set; }
         public int FrostID { get; set; }
-        public byte[] ImageURL { get; set; }
+        public string ImageUrl { get; set; }
     
         public virtual FrostHardy FrostHardy { get; set; }
         public virtual GeneType GeneType { get; set; }
