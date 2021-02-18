@@ -96,7 +96,7 @@ namespace StoreFront.UI.MVC.Controllers
 
                         //Resize the image
                         //provide all requirements  to call the ResizeImage() from the utility. SavePath, Image, MaxImageSize, MaxThumbSize
-                        string savePath = Server.MapPath("~/Content/img/VeggiePictures/");
+                        string savePath = Server.MapPath("~/Content/img/VeggiesPictures/");
                         Image convertedImage = Image.FromStream(seedPacket.InputStream);//methodology to pull in that file and grabbing the input string
                         int maxImageSize = 500;
                         int maxThumbSize = 100;
@@ -170,10 +170,41 @@ namespace StoreFront.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SeedID,CommonName,ScientificName,Description,PlantingInstructions,Cost,SpacingID,UnitsID,CycleID,ProductID,SproutID,SeasonID,CategoryID,SunID,TempID,GeneID,DepthID,FrostID,ImageUrl")] Seed seed)
+        public ActionResult Edit([Bind(Include = "SeedID,CommonName,ScientificName,Description,PlantingInstructions,Cost,SpacingID,UnitsID,CycleID,ProductID,SproutID,SeasonID,CategoryID,SunID,TempID,GeneID,DepthID,FrostID,ImageUrl")] Seed seed, HttpPostedFileBase seedPacket)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload Utility
+                if(seedPacket != null)
+                {
+                    string imgName = seedPacket.FileName;
+
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                    string[] goodExts = { ".jpg", ".jpeg", ".gif", ".png" };
+
+                    if(goodExts.Contains(ext.ToLower()) && (seedPacket.ContentLength <= 4194304))
+                    {
+                        imgName = Guid.NewGuid() + ext.ToLower();
+
+                        string savePath = Server.MapPath("~/Content/img/VeggiesPictures/");
+
+                        Image convertedImage = Image.FromStream(seedPacket.InputStream);
+                        int maxImageSize = 500;
+                        int maxThumbSize = 100;
+
+                        ImageService.ResizeImage(savePath, imgName, convertedImage, maxImageSize, maxThumbSize);
+
+                        if(seed.ImageUrl !=null &&seed.ImageUrl != "NoImage.png")
+                        {
+                            string path = Server.MapPath("~/Content/img/VeggiesPictures/");
+                            ImageService.Delete(path, seed.ImageUrl);
+                        }
+                        seed.ImageUrl = imgName;
+
+                    }//end if
+                }
+                #endregion
                 db.Entry(seed).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

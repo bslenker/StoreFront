@@ -149,7 +149,7 @@ namespace StoreFront.DATA.EF//.Metadata
         public Nullable<decimal> Cost { get; set; }
 
         [Display(Name = "Image")]
-        public byte[] ImageURL { get; set; }
+        public byte[] ImageUrl { get; set; }
     }
     [MetadataType(typeof(SeedMetadata))]
     public partial class Seed { }
@@ -193,8 +193,5 @@ namespace StoreFront.DATA.EF//.Metadata
     public partial class UnitsPerPacket { }
     #endregion
 
-    #region ImageUrl
 
-    //public
-    #endregion
 }//end namespace

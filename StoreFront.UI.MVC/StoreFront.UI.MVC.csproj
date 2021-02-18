@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -168,6 +174,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FiltersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
@@ -186,7 +193,9 @@
     <Compile Include="Utilites\ImageService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\style.blue.css" />
     <Content Include="Content\css\style.blue.min.css" />
     <Content Include="Content\css\style.default.css" />
@@ -237,47 +246,10 @@
     <Content Include="Content\img\product-detail-3.jpg" />
     <Content Include="Content\img\product-detail-4.jpg" />
     <Content Include="Content\img\template-mac.png" />
-    <Content Include="Content\img\VeggiesPictures\Amarillo Carrot\Carrot-Amarillo-LSS-013-1.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Amarillo Carrot\carrot-amarillo-lss-dscf0280.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Amarillo Carrot\Carrot-Amarillo-LSS-DSC_0031.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Amarillo Carrot\carrot-amarillo.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Atomic Orange Corn\Corn-Atomic-Orange-CN186-Jamie-Jackson-RETOUCHED-IMAGE-LSS-000_5791_1.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Atomic Orange Corn\Corn-Atomic-Orange-CN186-LSS--000_5775_1.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Atomic Orange Corn\Corn-Atomic-Orange-CN186-LSS--000_5782_1.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Atomic Orange Corn\corn-atomic-orange-cn186-lss-000_5774.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Calima Bean\bean-calima-bn144-lss-dsc_2291.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Calima Bean\bean-calima-bn144-lss-dsc_2303.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Calima Bean\bean-calima-bn144-lss-dsc_2308.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Calima Bean\bean-calima-bn144-lss-dsc_2355.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Calima Bean\bean-calima-sauteed-in-wok-w-garlic-lss-dsc_3657.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Chinese Radish\CHINESE-Radish-Red-red-meat-real-red-KJ-IMG_1144.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Chinese Radish\Chinese-Red-Radish-.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Chinese Radish\Radish-Chinese-Red-or-Real-Red-Chinese-Radish-LSS-DSC_8417.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Chinese Radish\Radish-Chinese-Red-or-Real-Red-Chinese-Radish-LSS-DSC_8455.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Country Gentleman Corn\Corn-Country-Gentleman-Sweet-CN105-000_44571.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Country Gentleman Corn\Corn-Country-Gentleman-Sweet-CN105-000_44611.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Country Gentleman Corn\Corn-Country-Gentleman-Sweet-CN105-000_44781.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Country Gentleman Corn\corn-country-gentleman-sweet-lss-000_2462.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Early Purple Sprouting Broccoli\Broccoli-Early-Purple-Sprouting-KJ-20190227_0047.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Early Purple Sprouting Broccoli\broccoli-early-purple-sprouting-lss-dsc_0181.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Early Purple Sprouting Broccoli\broccoli-early-purple-sprouting-lss-dsc_0237.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Early Purple Sprouting Broccoli\broccoli-early-purple-sprouting-lss-dsc_0442.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Early Purple Sprouting Broccoli\broccoli-early-purple-sprouting-lss-dsc_0448.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Early Purple Sprouting Broccoli\broccoli-early-purple-sprouting-lss-dsc_0822.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Hopi Turquoise Corn\corn-hopi-turquoise-lss-000_2564 %281%29.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Hopi Turquoise Corn\corn-hopi-turquoise-lss-000_2564.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Hopi Turquoise Corn\Corn-Hopi-Turquoise-LSS-000_2571.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Hopi Turquoise Corn\Corn-Hopi-Turquoise-LSS-000_2580.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\corn-cudu-improved-kj-img_0875 %281%29.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\corn-cudu-improved-kj-img_0875.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\Cudu.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\Ed-Schultz-Cudu-crossed-with-Papas-White-2017-talk-with-john-ab-eds-corn-LSS-000_7634.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Montana Cudu Corn\Ed-Schultz-Cudu-crossed-with-Papas-White-2017-talk-with-john-ab-eds-corn-LSS-000_7635.jpg" />
     <Content Include="Content\img\VeggiesPictures\NoImage.png" />
-    <Content Include="Content\img\VeggiesPictures\Romanesco Italia Broccoli\Alaska-Remple-Farms-Broccoli-Romanesco-DSC03676.jpg" />
-    <Content Include="Content\img\VeggiesPictures\Romanesco Italia Broccoli\broccoli-romanesco-italia-lss-dsc_8154.jpg" />
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\front.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\vendor\bootstrap-select\css\bootstrap-select.css" />
     <Content Include="Content\vendor\bootstrap-select\css\bootstrap-select.min.css" />
     <Content Include="Content\vendor\bootstrap-select\js\bootstrap-select.js" />
@@ -719,6 +691,7 @@
     <Content Include="Views\Seeds\Edit.cshtml" />
     <Content Include="Views\Seeds\Index.cshtml" />
     <Content Include="Views\Seeds\IndexMaster.cshtml" />
+    <Content Include="Views\Filters\SeedsMVCPaging.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

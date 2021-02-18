@@ -86,7 +86,8 @@
             @Html.DisplayFor(modelItem => item.Cost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageUrl)
+            @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+            <img src="~/Content/img/VeggiesPictures/t_@item.ImageUrl" alt="Seed Cover" title="@item.CommonName" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FrostHardy.FrostID)
@@ -125,9 +126,15 @@
             @Html.DisplayFor(modelItem => item.UnitsPerPacket.UnitsID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SeedID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SeedID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SeedID })
+            <a href="@Url.Action("Edit", "Seeds", new { id=item.SeedID })" >
+                <i class="fa fa-pencil-square-o action-icons" aria-hidden="true"></i>
+            </a>
+            <a href="@Url.Action("Details", "Seeds", new { id=item.SeedID })">
+                <i class="fa fa-info-circle action-icons" aria-hidden="true"></i>
+            </a>
+            <a href="@Url.Action("Delete", "Seeds", new { id=item.SeedID })">
+                <i class="fa fa-trash action-icons" aria-hidden="true"></i>
+            </a>
         </td>
     </tr>
 }

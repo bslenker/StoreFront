@@ -1,0 +1,169 @@
+﻿@*@model IEnumerable<StoreFront.DATA.EF.Seed>*@
+@model PagedList.IPagedList<StoreFront.DATA.EF.Seed>
+
+
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Server-Side Seeds MVC Paging";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("SeedsMVCPaging", "Filters", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-4 text-right" style="padding: .5em;">
+            <label for="searchFilter">Find by Common Name:</label>
+        </div>
+        <div class="col-md-8">
+            @Html.TextBox("SearchString", ViewBag.SearchString as string)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+        <div class="col-md-2">
+            @Html.ActionLink("Reset", "SeedsMVCPaging", "Filters", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+
+}
+@Html.PagedListPager(Model, page => Url.Action("SeedsMVCPaging", new { page, searchString = ViewBag.SearchString }))
+
+@if (Model.Count() == 0)
+{
+    <h3 class="text-center">
+        No results found for your last query:
+        <em style="color:orange">@Request.QueryString["SearchString"].ToString()</em>
+    </h3>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().CommonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ScientificName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PlantingInstructions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FrostHardy.FrostID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().GeneType.GeneName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().IdealTemp.Temp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().LifeCycle.CycleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().MinFullSun.SunTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PlantSpacing.Spacing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Product.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Season.SeasonType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().SeedCategory.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().SeedDepth.DepthID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().SproutIn.SproutDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UnitsPerPacket.UnitsID)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScientificName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlantingInstructions)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FrostHardy.FrostID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GeneType.GeneName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdealTemp.Temp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LifeCycle.CycleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinFullSun.SunTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlantSpacing.Spacing)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Season.SeasonType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeedCategory.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeedDepth.DepthID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SproutIn.SproutDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsPerPacket.UnitsID)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    <hr style="border: 2px solid darkgray" />
+    <!--Create  the pager: show the current page and links to other pages (PageList)-->
+    <!--Ternary: ExpressionToEvaluate ? True: False-->
+    @:Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+ }
