@@ -47,7 +47,7 @@ else
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().CommonName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().ScientificName)
             </th>
             <th>
@@ -55,13 +55,13 @@ else
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().PlantingInstructions)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Cost)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().ImageUrl)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().FrostHardy.FrostID)
             </th>
@@ -106,7 +106,7 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.CommonName)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.ScientificName)
                 </td>
                 <td>
@@ -114,13 +114,13 @@ else
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PlantingInstructions)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Cost)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.ImageUrl)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.FrostHardy.FrostID)
                 </td>
