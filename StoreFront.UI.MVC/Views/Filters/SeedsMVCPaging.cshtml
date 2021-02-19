@@ -48,20 +48,20 @@ else
                 @Html.DisplayNameFor(model => model.FirstOrDefault().CommonName)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().ScientificName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().PlantingInstructions)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ScientificName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().PlantingInstructions)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Cost)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().ImageUrl)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ImageUrl)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().FrostHardy.FrostID)
             </th>
@@ -104,23 +104,24 @@ else
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CommonName)
+                    <a href="@Url.Action("Details", "Seeds", new { Id=item.SeedID})">@Html.DisplayFor(modelItem => item.CommonName)</a>
+                    @*@Html.DisplayFor(modelItem => item.CommonName)*@
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.ScientificName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlantingInstructions)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.ScientificName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlantingInstructions)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Cost)
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.ImageUrl)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.ImageUrl)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.FrostHardy.FrostID)
                 </td>
@@ -166,4 +167,4 @@ else
     <!--Create  the pager: show the current page and links to other pages (PageList)-->
     <!--Ternary: ExpressionToEvaluate ? True: False-->
     @:Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
- }
+}
