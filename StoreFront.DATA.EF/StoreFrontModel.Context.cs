@@ -40,5 +40,6 @@ namespace StoreFront.DATA.EF
         public virtual DbSet<Seed> Seeds { get; set; }
         public virtual DbSet<SproutIn> SproutIns { get; set; }
         public virtual DbSet<UnitsPerPacket> UnitsPerPackets { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }

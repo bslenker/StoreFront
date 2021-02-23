@@ -1,4 +1,20 @@
 ﻿@using Microsoft.AspNet.Identity
+@using StoreFront.DATA.EF;
+
+@{ 
+    string currentUserId = User.Identity.GetUserId();
+    StoreFrontEntities ctn = new StoreFrontEntities();
+    UserDetail ud = ctn.UserDetails.Where(u => u.UserID == currentUserId).FirstOrDefault();
+    string greet = "Guest";
+    string favColor = "#FFF";
+    if(ud !=null)
+    {
+        greet = ud.FirstName;
+        favColor = ud.FavoriteColor;
+    }
+}
+
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,7 +23,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-link">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + greet, "Index", "Manage", null, new {style="color: " + favColor + ";", title = "Manage" })
             </li>
             <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
@@ -15,7 +31,7 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav">
         <li class="nav-item"><a class="nav-link" href="@Url.Action("Register", "Account")">Register</a></li>
         <li class="nav-item"><a class="nav-link" href="@Url.Action("Login", "Account")">Login</a></li>
     </ul>
