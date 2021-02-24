@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoreFront.DATA.EF;
+using StoreFront.UI.MVC.Models;
 using StoreFront.UI.MVC.Utilites;
 
 namespace StoreFront.UI.MVC.Controllers
@@ -15,6 +16,61 @@ namespace StoreFront.UI.MVC.Controllers
     public class SeedsController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
+
+        #region AddToCart()
+        //looking for the quantity and the seed they are wanting to add
+        [HttpPost]
+        public ActionResult AddToCart(int qty, int seedID)
+        {                       //had to add reference
+            Dictionary<int, CartItemViewModel> shoppingCart = null;
+
+            //check cart in session (global)
+            //if the cart has seeds in it, then assign its value to the local dictionary
+            if(Session["cart"] != null)
+            {
+                shoppingCart = (Dictionary<int, CartItemViewModel>)Session["cart"];
+            }//end if
+            //if Global is empty
+            else
+            {
+                //create an empty instance of the Local dictionary
+                shoppingCart = new Dictionary<int, CartItemViewModel>();
+            }//end else
+
+            //here get the products object being added
+            Seed product = db.Seeds.Where(s => s.SeedID == seedID).FirstOrDefault();//which will allow a null value
+            //if productID (seedID) is null, return them to the seeds index
+            if(product == null)
+            {
+                return RedirectToAction("Index");
+
+            }//end if
+            //else the productID IS valid
+            else
+            {
+                //create the shopping cart view model object
+                CartItemViewModel item = new CartItemViewModel(qty, product);
+
+                //if the productID is represented in the shoppingcart, do an increase of quantity.. functionality
+                if(shoppingCart.ContainsKey(product.SeedID))
+                {
+                    shoppingCart[product.SeedID].Qty += qty;
+                }//end iff
+                //else the product is NOT in the cart, add it there
+                else
+                {
+                    shoppingCart.Add(product.SeedID, item);
+                }//end else
+                //have to update the Global (session) cart with the values from the local (dictionary)
+                Session["cart"] = shoppingCart;
+            }//end else
+            //if the product was added => redirect to the ShoppingCart Index
+            return RedirectToAction("Index", "ShoppingCart");
+        }//end ActionResult
+
+
+        #endregion
+
 
         // GET: Seeds
         public ActionResult Index()
@@ -96,7 +152,7 @@ namespace StoreFront.UI.MVC.Controllers
 
                         //Resize the image
                         //provide all requirements  to call the ResizeImage() from the utility. SavePath, Image, MaxImageSize, MaxThumbSize
-                        string savePath = Server.MapPath("~/Content/img/VeggiesPictures/");
+                        string savePath = Server.MapPath("~/Content/img/product/");
                         Image convertedImage = Image.FromStream(seedPacket.InputStream);//methodology to pull in that file and grabbing the input string
                         int maxImageSize = 500;
                         int maxThumbSize = 100;
@@ -187,7 +243,7 @@ namespace StoreFront.UI.MVC.Controllers
                     {
                         imgName = Guid.NewGuid() + ext.ToLower();
 
-                        string savePath = Server.MapPath("~/Content/img/VeggiesPictures/");
+                        string savePath = Server.MapPath("~/Content/img/product/");
 
                         Image convertedImage = Image.FromStream(seedPacket.InputStream);
                         int maxImageSize = 500;
@@ -197,7 +253,7 @@ namespace StoreFront.UI.MVC.Controllers
 
                         if(seed.ImageUrl !=null &&seed.ImageUrl != "NoImage.png")
                         {
-                            string path = Server.MapPath("~/Content/img/VeggiesPictures/");
+                            string path = Server.MapPath("~/Content/img/product/");
                             ImageService.Delete(path, seed.ImageUrl);
                         }
                         seed.ImageUrl = imgName;
