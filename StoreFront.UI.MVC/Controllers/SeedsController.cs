@@ -1,21 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using System.Data.Entity;//empty controller needed ref. to entity
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using StoreFront.DATA.EF;
+using StoreFront.DATA.EF;//Access to EF and connection
 using StoreFront.UI.MVC.Models;
 using StoreFront.UI.MVC.Utilites;
+using PagedList;//MVC paging
+using PagedList.Mvc;//MVCpaging
 
 namespace StoreFront.UI.MVC.Controllers
 {
     public class SeedsController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
+
+        #region Paging
+        public ActionResult SeedsMVCPaging(string searchString, int page = 1)
+        {
+
+            int pageSize = 5;
+
+            var seeds = db.Seeds.OrderBy(s => s.CommonName).ToList();
+            #region Search Logic
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                seeds = seeds.Where(s => s.CommonName.ToLower().Contains(searchString.ToLower())).ToList();
+
+            }
+
+            ViewBag.SearchString = searchString;
+            #endregion
+            return View(seeds.ToPagedList(page, pageSize));
+        }//end ActionResult
+        #endregion
 
         #region AddToCart()
         //looking for the quantity and the seed they are wanting to add

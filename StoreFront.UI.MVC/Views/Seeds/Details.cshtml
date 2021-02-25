@@ -153,11 +153,20 @@
             <dd>
                 @Html.DisplayFor(model => model.UnitsPerPacket.UnitsID)
             </dd>
-
+            <dd>
+                @using (Html.BeginForm("AddToCart", "Seeds", new { seedID = Model.SeedID }, FormMethod.Post))
+                {
+                    @Html.HiddenFor(x=>x.SeedID)
+                    //txtbox for qty
+                    @Html.TextBox("Qty", 1, new {@class="form-control", style="max-width:75px;display:inline;"})
+                    //submit btn
+                    <input type="submit"value="Add To Cart"class="btn btn-primary"name="qty"/>
+                }
+            </dd>
         </dl>
     </div>
     <div class="col-md-6">
-        <img src="~/Content/img/VeggiesPictures/@Model.ImageUrl" alt="Seed Cover" title="@Model.CommonName" />
+        <img src="~/Content/img/product/@Model.ImageUrl" alt="Seed Cover" title="@Model.CommonName" />
     </div>
 </div>
 <p>

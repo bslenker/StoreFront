@@ -32,7 +32,9 @@
 
 }
 @Html.PagedListPager(Model, page => Url.Action("SeedsMVCPaging", new { page, searchString = ViewBag.SearchString }))
-
+    <p>
+        @Html.ActionLink("Create New", "Create","Seeds")
+    </p>
 @if (Model.Count() == 0)
 {
     <h3 class="text-center">
@@ -59,107 +61,119 @@ else
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Cost)
             </th>
-            @*<th>
+            <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().ImageUrl)
-                </th>*@
-            <th>
+                </th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().FrostHardy.FrostID)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().GeneType.GeneName)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().IdealTemp.Temp)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().LifeCycle.CycleType)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().MinFullSun.SunTime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().PlantSpacing.Spacing)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Product.ProductName)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Season.SeasonType)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().SeedCategory.CategoryName)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().SeedDepth.DepthID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().SproutIn.SproutDays)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().UnitsPerPacket.UnitsID)
-            </th>
+            </th>*@
+            <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <a href="@Url.Action("Details", "Seeds", new { Id=item.SeedID})">@Html.DisplayFor(modelItem => item.CommonName)</a>
-                    @*@Html.DisplayFor(modelItem => item.CommonName)*@
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ScientificName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PlantingInstructions)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ImageUrl)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.FrostHardy.FrostID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GeneType.GeneName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdealTemp.Temp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LifeCycle.CycleType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MinFullSun.SunTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlantSpacing.Spacing)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Season.SeasonType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SeedCategory.CategoryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SeedDepth.DepthID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SproutIn.SproutDays)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitsPerPacket.UnitsID)
-                </td>
-
-            </tr>
+        <tr>
+            <td>
+                <a href="@Url.Action("Details", "Seeds", new { Id=item.SeedID})">@Html.DisplayFor(modelItem => item.CommonName)</a>
+                @*@Html.DisplayFor(modelItem => item.CommonName)*@
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ScientificName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlantingInstructions)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                <img src="~/Content/img/product/t_@item.ImageUrl" alt="Seed Cover" title="@item.CommonName" />
+                @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.FrostHardy.FrostID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeneType.GeneName)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.IdealTemp.Temp)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.LifeCycle.CycleType)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.MinFullSun.SunTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlantSpacing.Spacing)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Season.SeasonType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeedCategory.CategoryName)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.SeedDepth.DepthID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SproutIn.SproutDays)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.UnitsPerPacket.UnitsID)
+        </td>*@
+            <td>
+                <a href="@Url.Action("Edit", "Seeds", new { id=item.SeedID })">
+                    <i class="fa fa-pencil-square-o action-icons" aria-hidden="true"></i>
+                </a>
+                <a href="@Url.Action("Details", "Seeds", new { id=item.SeedID })">
+                    <i class="fa fa-info-circle action-icons" aria-hidden="true"></i>
+                </a>
+                <a href="@Url.Action("Delete", "Seeds", new { id=item.SeedID })">
+                    <i class="fa fa-trash action-icons" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
         }
 
     </table>

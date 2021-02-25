@@ -88,7 +88,7 @@ namespace StoreFront.UI.MVC.Utilites
         public static void Delete(string path, string fileName)
         {
             //Skip this action if targeted file is the "default image".
-            if (fileName.ToLower() == "noimage.png")
+            if (fileName.ToLower() == "NoImage.png")
             {
                 return;
             }

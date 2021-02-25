@@ -11,10 +11,10 @@
     int totalCountOfItems = 0;
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 style="padding-left:100px;">@ViewBag.Title</h2>
 
 <p class="text-center">
-    @Html.ActionLink("Back To Shopping", "Shop", "Home", null, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Back To Shopping", "Index", "Seeds", null, new { @class = "btn btn-danger" })
 </p>
 <!--If shopper arrives with no items in their cart, provide message (should show if they remove the last item from the cart as well)-->
 @if (ViewBag.Message != null)
@@ -33,10 +33,11 @@ else
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products</th>
+                                    <th class="shoping__product">Product</th>
+                                    <th>Image</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th>Sub Total</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -44,9 +45,9 @@ else
                             {
                                 <tbody>
                                     <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Value.Product.CommonName)</td>
                                         <td class="shoping__cart__item">
                                             <img src="~/Content/img/product/t_@item.Value.Product.ImageUrl" alt="Seed Cover" title="@item.Value.Product.CommonName">
-                                            @*<h5>Vegetable’s Package</h5>*@
                                         </td>
                                         <td class="shoping__cart__price">
                                             @Html.DisplayFor(modelItem => item.Value.Product.Cost)
@@ -55,20 +56,20 @@ else
                                             @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
                                             {
                                                 @Html.Hidden("SeedID", item.Value.Product.SeedID)
-                                                @Html.TextBox("qty", item.Value.Qty, new {@class="form-control"})
-                                                <input type="submit" value="Update Quantity" class="btn btn-primary"/>
+                                                @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width:50px; display:inline;" })
+                                                <input type="submit" value="update qty" class="btn btn-primary" />
                                             }
                                             @{totalCountOfItems += item.Value.Qty;}
-                                                @*<div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" value="1">
-                                                </div>
-                                            </div>*@
+                                            @*<div class="quantity">
+                                                    <div class="pro-qty">
+                                                        <input type="text" value="1">
+                                                    </div>
+                                                </div>*@
                                         </td>
                                         <td class="shoping__cart__total">
                                             @{decimal? lineTotal = item.Value.Product.Cost * item.Value.Qty;
                                                 cartTotal += lineTotal;
-                                                }
+                                            }
                                             @string.Format($"{lineTotal:c}")
                                         </td>
                                         <td class="shoping__cart__item__close">
@@ -85,11 +86,18 @@ else
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right">
+                        <a href="@Url.Action("Index","Seeds")" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+
+
+                        <div class="primary-btn cart-btn cart-btn-right">
                             <span class="icon_loading"></span>
-                            Update Cart
-                        </a>
+                            @*@using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+                                {
+                                    @Html.Hidden("SeedID", item.Value.Product.SeedID)
+                                    @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width:75px; display:inline;" })
+                                    <input type="submit" value="Update Quantity" class="btn btn-primary" />
+                                }*@
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -105,9 +113,10 @@ else
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
+                        <h4 style="font-weight:700;">SUMMARY</h4>
                         <h5>Cart Total</h5>
                         <p>
-                            You have @totalCountOfItems @(totalCountOfItems >1 ? "seeds" : "seed")in your cart.
+                            You have @totalCountOfItems @(totalCountOfItems > 1 ? "products" : "seed") in your cart.
                             Your total before taxes and shipping is @string.Format($"{cartTotal:c}")
                         </p>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
@@ -118,30 +127,26 @@ else
     </section>
 }
 <!-- Shoping Cart Section End -->
-
-
-
-
 @*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Qty)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Qty)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>*@
