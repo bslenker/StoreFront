@@ -37,19 +37,55 @@
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                @if (Session["cart"] != null &&
+                                            ((Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel>)Session["cart"])
+                                            .Count > 0)
+                {
+                    //get the total amount (count) of products in the cart and display with the icon
+
+                    //Query to get the count of products
+                    Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel> prods =
+                        (Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel>)Session["cart"];
+                    var prodCount = prods.Sum(p => p.Value.Qty);
+                    <li>
+                        <a href="/ShoppingCart/Index">
+                            @*Cart*@<i class="fa fa-shopping-bag"></i>
+                            <sup style="color:white; background-color:#7fad39;
+                                                        height: 13px;
+                                                        width: 13px;
+                                                        line-height: 13px;
+                                                        text-align: center;
+                                                        font-weight: 700;
+                                                        display: inline-block;
+                                                        border-radius: 50%;
+                                                        position: absolute;
+                                                        top: 0;
+                                                        right: -12px;">
+                                @prodCount
+                            </sup>
+
+                        </a>
+                    </li>
+                    <!--Update the link to include the count of books in the cart-->
+                }
+                @*Comment out if you want the no click on cart...*@
+                else
+                {
+                    <li>@Html.ActionLink("Cart", "Index", "ShoppingCart")</li>
+                }
+                @*<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>*@
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
-                <img src="/Content/img/language.png" alt="">
+                @*<img src="/Content/img/language.png" alt="">
                 <div>English</div>
                 <span class="arrow_carrot-down"></span>
                 <ul>
                     <li><a href="#">Spanis</a></li>
                     <li><a href="#">English</a></li>
-                </ul>
+                </ul>*@
             </div>
             <div class="header__top__right__auth">
                 @Html.Partial("_LoginPartial")
@@ -59,7 +95,7 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                <li><a href="@Url.Action("Shop", "Home")">Shop</a></li>
+                <li><a href="@Url.Action("Index", "Seeds")">Shop</a></li>
                 <li>
                     <a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
@@ -113,7 +149,7 @@
                                 <div class="header__menu">
                                     <ul>
                                         <li>
-                                            <a href="#"><i class="fa fa-user"></i>Login<span class="arrow_carrot-down"></span></a>
+                                            <a href="#"><i class="fa fa-user"></i>Account<span class="arrow_carrot-down"></span></a>
                                             <ul class="header__menu__dropdown">
                                                 <li>@Html.Partial("_LoginPartial")</li>
                                             </ul>
@@ -149,11 +185,11 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li><a href="@Url.Action("Shop", "Home")">Shop</a></li>
+                            <li><a href="@Url.Action("Index", "Seeds")">Shop</a></li>
                             <li>
                                 <a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="@Url.Action("Detail", "Home")">Item Details</a></li>
+                                    @*<li><a href="@Url.Action("Detail", "Home")">Item Details</a></li>*@
                                     <li><a href="@Url.Action("Index", "ShoppingCart")">Shoping Cart</a></li>
                                     <li><a href="./checkout.html">Check Out</a></li>
                                     @*<li><a href="./blog-details.html">Blog Details</a></li>*@
@@ -168,9 +204,48 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            @*Only show icon for cart link if session cart exists and has more than 0 items*@
+                            @if (Session["cart"] != null &&
+                                            ((Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel>)Session["cart"])
+                                            .Count > 0)
+                            {
+                                //get the total amount (count) of products in the cart and display with the icon
+
+                                //Query to get the count of products
+                                Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel> prods =
+                                    (Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel>)Session["cart"];
+                                var prodCount = prods.Sum(p => p.Value.Qty);
+                                <li>
+                                    <a href="/ShoppingCart/Index">
+                                        @*Cart*@<i class="fa fa-shopping-bag"></i>
+                                        <sup style="color:white; background-color:#7fad39;
+                                                        height: 13px;
+                                                        width: 13px;
+                                                        line-height: 13px;
+                                                        text-align: center;
+                                                        font-weight: 700;
+                                                        display: inline-block;
+                                                        border-radius: 50%;
+                                                        position: absolute;
+                                                        top: 0;
+                                                        right: -12px;">
+                                            @prodCount
+                                        </sup>
+
+                                    </a>
+                                </li>
+                                <!--Update the link to include the count of books in the cart-->
+                            }
+                            @*Comment out if you want the no click on cart...*@
+                            else
+                            {
+                                <li>@Html.ActionLink("Cart:0", "Index", "ShoppingCart")</li>
+                            }
+
+                            @*<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>*@
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+
+                        <div class="header__cart__price">Cart Total: <span> $1000.00</span></div>
                     </div>
                 </div>
             </div>

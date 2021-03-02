@@ -1595,7 +1595,7 @@ ol {
 }
 
 .product__item {
-	margin-bottom: 50px;
+	margin-bottom: 5px;
 }
 
 .product__item:hover .product__item__pic .product__item__pic__hover {
@@ -1685,6 +1685,7 @@ ol {
 .product__item__text h5 {
 	color: #252525;
 	font-weight: 700;
+    padding-bottom: 25px;
 }
 
 .product__pagination,
@@ -3533,4 +3534,11 @@ ol {
 	.blog__details__hero__text h2 {
 		font-size: 24px;
 	}
+    p.detailLink {
+        text-align: center;
+    }
 }
+   
+/*.btn btn-primary{
+    border: dashed;
+}*/

@@ -4,10 +4,26 @@
     ViewBag.Title = $"Details: {Model.CommonName}";
 }
 
-<h2>@ViewBag.Title</h2>
 
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/Content/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>@ViewBag.Title</h2>
+                    <div class="breadcrumb__option">
+                        <a href="@Url.Action("Index", "Home")">Home</a>
+                        <a href="@Url.Action("Index", "Seeds")">Seed Bank</a>
+                        <span>Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4" style="padding:45px 0px 0px 45px;">
 
         <dl class="dl-horizontal">
             <dt>
@@ -89,7 +105,10 @@
             <dd>
                 @Html.DisplayFor(model => model.LifeCycle.CycleType)
             </dd>
-
+        </dl>
+    </div>
+    <div class="col-md-4" style="padding-top:45px 45px 45px 45px;">
+        <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.MinFullSun.SunTime)
             </dt>
@@ -153,23 +172,33 @@
             <dd>
                 @Html.DisplayFor(model => model.UnitsPerPacket.UnitsID)
             </dd>
-            <dd>
+            @*<dd>
                 @using (Html.BeginForm("AddToCart", "Seeds", new { seedID = Model.SeedID }, FormMethod.Post))
                 {
-                    @Html.HiddenFor(x=>x.SeedID)
+                    @Html.HiddenFor(x => x.SeedID)
                     //txtbox for qty
-                    @Html.TextBox("Qty", 1, new {@class="form-control", style="max-width:75px;display:inline;"})
+                    @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width:75px;display:inline;" })
                     //submit btn
-                    <input type="submit"value="Add To Cart"class="btn btn-primary"name="qty"/>
+                    <input type="submit" value="Add To Cart" class="btn btn-primary" name="qty" />
                 }
-            </dd>
+            </dd>*@
         </dl>
     </div>
-    <div class="col-md-6">
+
+    <div class="col-md-4" style="padding:45px 45px;">
         <img src="~/Content/img/product/@Model.ImageUrl" alt="Seed Cover" title="@Model.CommonName" />
+        @using (Html.BeginForm("AddToCart", "Seeds", new { seedID = Model.SeedID }, FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.SeedID)
+            //txtbox for qty
+            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width:75px;display:inline;" })
+            //submit btn
+            <input type="submit" value="Add To Cart" class="btn btn-primary" name="qty" />
+        }
     </div>
+    
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SeedID }) |
+<p class="detailLink">
+    @Html.ActionLink("Edit", "Edit", new {@class = "style:btn btn-primary", id = Model.SeedID}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -56,8 +56,8 @@ else
                                             @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
                                             {
                                                 @Html.Hidden("SeedID", item.Value.Product.SeedID)
-                                                @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width:50px; display:inline;" })
-                                                <input type="submit" value="update qty" class="btn btn-primary" />
+                                                @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width:55px; display:inline;" })
+                                                <input type="submit" value="update" class="btn btn-secondary btn-sm" />
                                             }
                                             @{totalCountOfItems += item.Value.Qty;}
                                             @*<div class="quantity">
@@ -73,7 +73,7 @@ else
                                             @string.Format($"{lineTotal:c}")
                                         </td>
                                         <td class="shoping__cart__item__close">
-                                            @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id = item.Value.Product.SeedID })
+                                            @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id = item.Value.Product.SeedID})
                                             @*<span class="icon_close"></span>*@
                                         </td>
                                     </tr>
