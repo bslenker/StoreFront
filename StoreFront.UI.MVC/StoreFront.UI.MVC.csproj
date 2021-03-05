@@ -260,12 +260,6 @@
     <Content Include="Content\img\product\details\thumb-2.jpg" />
     <Content Include="Content\img\product\details\thumb-3.jpg" />
     <Content Include="Content\img\product\details\thumb-4.jpg" />
-    <Content Include="Content\img\product\discount\pd-1.jpg" />
-    <Content Include="Content\img\product\discount\pd-2.jpg" />
-    <Content Include="Content\img\product\discount\pd-3.jpg" />
-    <Content Include="Content\img\product\discount\pd-4.jpg" />
-    <Content Include="Content\img\product\discount\pd-5.jpg" />
-    <Content Include="Content\img\product\discount\pd-6.jpg" />
     <Content Include="Content\img\product\eb1dbe09-e3cf-416e-9dbb-9cd8df64b424.jpg" />
     <Content Include="Content\img\product\NoImage.png" />
     <Content Include="Content\img\product\product-1.jpg" />

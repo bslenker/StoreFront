@@ -88,7 +88,16 @@
                 </ul>*@
             </div>
             <div class="header__top__right__auth">
-                @Html.Partial("_LoginPartial")
+                <div class="header__menu">
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa fa-user"></i>Account<span class="arrow_carrot-down"></span></a>
+                            <ul class="header__menu__dropdown">
+                                <li>@Html.Partial("_LoginPartial")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
                 @*<a href="#"><i class="fa fa-user"></i> Login</a>*@
             </div>
         </div>
@@ -118,8 +127,8 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
+                @*<li><i class="fa fa-envelope"></i> hello@colorlib.com</li>*@
+                <li>Free Shipping for all Orders within the U.S.A.</li>
             </ul>
         </div>
     </div>
@@ -132,8 +141,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                @*<li><i class="fa fa-envelope"></i> hello@colorlib.com</li>*@
+                                <li>Free Shipping for all Orders within the U.S.A.</li>
                             </ul>
                         </div>
                     </div>
@@ -244,7 +253,6 @@
 
                             @*<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>*@
                         </ul>
-
                         <div class="header__cart__price">Cart Total: <span> $1000.00</span></div>
                     </div>
                 </div>
