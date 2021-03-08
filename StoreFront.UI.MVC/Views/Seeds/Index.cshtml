@@ -1,13 +1,15 @@
-﻿@model IEnumerable<StoreFront.DATA.EF.Seed>
+﻿@*@model IEnumerable<StoreFront.DATA.EF.Seed>*@
 @*@model StoreFront.DATA.EF.Seed*@
-@*@model PagedList.IPagedList<StoreFront.DATA.EF.Seed>*@
+@model PagedList.IPagedList<StoreFront.DATA.EF.Seed>
 
-@*@using PagedList.Mvc;*@
+@using PagedList.Mvc;
 
 @{
+    /**/
+
     ViewBag.Title = "Seed Store";
 }
-@*@Html.PagedListPager(Model, page => Url.Action("SeedsMVCPaging", new { page, searchString = ViewBag.SearchString }))*@
+
 
 <body>
     @*<div class="col-lg-9">
@@ -363,6 +365,24 @@
                             </div>
                         </div>
                     </div>
+                    @using (Html.BeginForm("Index", "Seeds", FormMethod.Get))
+                    {
+                        <div class="row">
+                            <div class="col-md-2 text-right" style="padding: .5em;">
+                                <label for="searchFilter">Find by Common Name:</label>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.TextBox("SearchString", ViewBag.SearchString as string)
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" value="Search" class="btn btn-primary" />
+                            </div>
+                            <div class="col-md-2">
+                                @Html.ActionLink("Reset", "Seeds", "Seeds", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    }
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString }))
                     <div class="row">
                         @foreach (var item in Model)
                         {
@@ -388,15 +408,15 @@
                         }
                     </div>
                     @*<div class="product__pagination">
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                        </div>*@
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+        </div>*@
                     <hr style="border: 2px solid darkgray" />
                     <!--Create  the pager: show the current page and links to other pages (PageList)-->
                     <!--Ternary: ExpressionToEvaluate ? True: False-->
-                    @*@Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
                 </div>
             </div>
         </div>

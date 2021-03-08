@@ -93,6 +93,51 @@ namespace StoreFront.UI.MVC.Controllers
 
         #endregion
 
+        #region QueryString Seeds
+        //Server Side filter - QueryString
+        public ActionResult SeedsQS(string searchFilter)
+        {
+            //2 options
+            //- search has not been used (initial page demand or subsequent demands)
+            //- search has been used and return filtered results
+
+            //get a list of seeds
+            var seeds = db.Seeds;
+
+            //branch - no filter
+            if (string.IsNullOrEmpty(searchFilter))
+            {
+                //return all results
+                return View(seeds.ToList());
+            }
+            //branch for Filtered Results
+            else
+            {
+                //searchFilter has some value
+                //return a list of seeds that matches common name
+                //Method/Lambda syntax
+                var filteredSeeds = seeds.Where(s => s.CommonName.ToLower().Contains(searchFilter.ToLower())).ToList();
+
+                //keyword syntax
+                var filteredSeedKW = (from s in seeds
+                                         where s.CommonName.ToLower().Contains(searchFilter.ToLower())
+                                         select s).ToList();//making this a list make sure the return type is the same as filteredSeeds.
+                //Keyword returning a new anonymous type ...interchangeable with filteredAuthorsKW
+                //this result would need ot be passes via viewbag into an
+                var filteredSeedsKWAnon = from s in seeds
+                                          where s.CommonName.ToLower().Contains(searchFilter.ToLower())
+                                          select new
+                                          {
+                                              SeedName = s.CommonName
+                                          };
+                                                  
+
+
+                return View(filteredSeeds);
+            }//end else
+
+        }//end ActionResult AuthorsQS()
+        #endregion
 
         // GET: Seeds
         public ActionResult Index()
