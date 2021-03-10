@@ -106,6 +106,93 @@ ol {
 	padding: 0;
 	margin: 0;
 }
+.detailLink {
+    text-align:center;
+}
+.detailLink a {
+    font-size: 20px;
+    font-family: "Cairo", sans-serif;
+    color: #374050;
+    font-weight: 600;
+    text-align:center;
+}
+/*****************************/
+/* -- Pagination -- added */
+/*****************************/
+.post-pagination {
+    margin-top: 40px;
+    text-align: center;
+}
+
+    .post-pagination .pages {
+        display: inline-block;
+    }
+
+        .post-pagination .pages li {
+            display: inline-block;
+        }
+
+            .post-pagination .pages li + li {
+                margin-left: 10px;
+            }
+
+        .post-pagination .pages li {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #EBEBEB;
+            -webkit-transition: 0.2s all;
+            transition: 0.2s all;
+        }
+
+            .post-pagination .pages li a {
+                display: block;
+                -webkit-transition: 0.2s color;
+                transition: 0.2s color;
+            }
+
+            .post-pagination .pages li:hover, .post-pagination .pages li.active {
+                background-color: #FF6700;
+                color: #FFF;
+            }
+
+                .post-pagination .pages li:hover a {
+                    color: #FFF;
+                }
+
+.pagination-back, .pagination-next {
+    display: block;
+    text-align: center;
+    border-radius: 40px;
+    background-color: #EBEBEB;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+    height: 40px;
+    padding: 0px 30px;
+    line-height: 40px;
+}
+
+    .pagination-next:hover, .pagination-back:hover {
+        color: #FFF;
+        background-color: #FF6700;
+    }
+
+    .pagination-next:after {
+        content: "\f178";
+        font-family: FontAwesome;
+        margin-left: 15px;
+    }
+
+    .pagination-back:before {
+        content: "\f177";
+        font-family: FontAwesome;
+        margin-right: 15px;
+    }
+
+
+
 
 /*---------------------
   Helper CSS
@@ -1724,6 +1811,18 @@ ol {
 	margin-right: 0;
 }
 
+
+input[type="text"], textarea {
+    height: 40px;
+    width: 100%;
+    border: 1px solid #EBEBEB;
+    border-radius: 4px;
+    background: transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+    -webkit-transition: 0.2s border-color;
+    transition: 0.2s border-color;
+}
 /*---------------------
   Shop Details
 -----------------------*/

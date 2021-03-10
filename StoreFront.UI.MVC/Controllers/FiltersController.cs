@@ -25,7 +25,7 @@ namespace StoreFront.UI.MVC.Controllers
         public ActionResult SeedsMVCPaging(string searchString, int page =1)
         {
 
-            int pageSize = 5;
+            int pageSize = 9;
 
             var seeds = ctx.Seeds.OrderBy(s => s.CommonName).ToList();
             #region Search Logic

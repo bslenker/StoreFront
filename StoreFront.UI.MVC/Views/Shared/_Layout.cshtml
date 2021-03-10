@@ -80,12 +80,12 @@
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
                 @*<img src="/Content/img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>*@
+                    <div>English</div>
+                    <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li><a href="#">Spanis</a></li>
+                        <li><a href="#">English</a></li>
+                    </ul>*@
             </div>
             <div class="header__top__right__auth">
                 <div class="header__menu">
@@ -149,11 +149,11 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                                </div>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
                             <div class="header__top__right__auth">
                                 <div class="header__menu">
                                     <ul>
@@ -194,25 +194,14 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li><a href="@Url.Action("Index", "Seeds")">Shop</a></li>
-                            <li>
-                                <a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    @*<li><a href="@Url.Action("Detail", "Home")">Item Details</a></li>*@
-                                    <li><a href="@Url.Action("Index", "ShoppingCart")">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    @*<li><a href="./blog-details.html">Blog Details</a></li>*@
-                                </ul>
-                            </li>
-                            @*<li><a href="./blog.html">Blog</a></li>*@
+                            <li><a href="@Url.Action("SeedsMVCPaging", "Filters")">Shop'Em Seeds</a></li>                                                        
                             <li><a href="@Url.Action("Contact" , "Home")">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                        <ul>                            
                             @*Only show icon for cart link if session cart exists and has more than 0 items*@
                             @if (Session["cart"] != null &&
                                             ((Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel>)Session["cart"])
@@ -243,17 +232,16 @@
 
                                     </a>
                                 </li>
-                                <!--Update the link to include the count of books in the cart-->
+                                <!--Update the link to include the count of seeds in the cart-->
                             }
                             @*Comment out if you want the no click on cart...*@
                             else
                             {
-                                <li>@Html.ActionLink("Cart:0", "Index", "ShoppingCart")</li>
+                                <li>@Html.ActionLink("Shopping Cart:0", "Index", "ShoppingCart")</li>
                             }
 
                             @*<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>*@
-                        </ul>
-                        <div class="header__cart__price">Cart Total: <span> $1000.00</span></div>
+                        </ul>                        
                     </div>
                 </div>
             </div>
@@ -263,7 +251,7 @@
         </div>
     </header>
     <!-- Header Section End -->
-    <div>
+    <div class="main">
         @RenderBody()
     </div>
     <!-- Footer Section Begin -->
@@ -275,33 +263,13 @@
                         <div class="footer__about__logo">
                             <a href="@Url.Action("Index", "Home")" img src="~/Content/img/logo.png" alt=""></a>
                         </div>
-                        <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
-                        </ul>
+                        @*<ul>
+                            <li>Address: Drexel, MO</li>
+                            <li>Phone: 800-321-1234</li>
+                            <li>Email: admin@seedbank.com</li>
+                        </ul>*@
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    @*<div class="footer__widget">
-                            <h6>Useful Links</h6>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">About Our Shop</a></li>
-                                <li><a href="#">Secure Shopping</a></li>
-                                <li><a href="#">Delivery infomation</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">Who We Are</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">Projects</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Innovation</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                            </ul>
-                        </div>*@
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
@@ -312,10 +280,7 @@
                             <p>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</p>
                         }
                         @*<p>Get E-mail updates about our latest shop and special offers.</p>*@
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
+                        
                         <div class="footer__widget__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
@@ -356,6 +321,7 @@
         <script src="~/Content/js/main.js"></script>*@
     @*<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>*@
     <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.nice-select.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.slicknav.js"></script>

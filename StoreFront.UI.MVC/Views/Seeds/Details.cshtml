@@ -14,7 +14,7 @@
                     <h2>@ViewBag.Title</h2>
                     <div class="breadcrumb__option">
                         <a href="@Url.Action("Index", "Home")">Home</a>
-                        <a href="@Url.Action("Index", "Seeds")">Seed Bank</a>
+                        <a href="@Url.Action("SeedsMVCPaging", "Filters")">Seed Bank</a>
                         <span>Details</span>
                     </div>
                 </div>
@@ -31,63 +31,26 @@
                         <img class="product__details__pic__item--large"
                              src="/Content/img/product/@Model.ImageUrl" alt="@Model.CommonName" title="@Model.CommonName">
                     </div>
-                    @*<div class="product__details__pic__slider owl-carousel">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-2.jpg"
-                             src="/Content/img/product/details/thumb-1.jpg" alt="">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-3.jpg"
-                             src="/Content/img/product/details/thumb-2.jpg" alt="">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-5.jpg"
-                             src="/Content/img/product/details/thumb-3.jpg" alt="">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-4.jpg"
-                             src="/Content/img/product/details/thumb-4.jpg" alt="">
-                    </div>*@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
                     <h3>@Model.CommonName</h3>
-                    @*<div class="product__details__rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-            <span>(18 reviews)</span>
-        </div>*@
-                    <div class="product__details__price">@Model.Cost</div>
+
+                    <div class="product__details__price">@Html.DisplayFor(model => model.Cost)</div>
                     <p>
                         @Model.Description
                     </p>
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
-                            </div>
-                        </div>
-                    </div>
                     @using (Html.BeginForm("AddToCart", "Seeds", new { seedID = Model.SeedID }, FormMethod.Post))
                     {
                         @Html.HiddenFor(x => x.SeedID)
                         //txtbox for qty
                         @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width:75px;display:inline;" })
                         //submit btn
-                        <input type="submit" value="Add To Cart" class="btn btn-primary" name="qty" />
+                        <input type="submit" value="Add To Cart" class="primary-btn" name="qty" />
                     }
-                    <a href="#" class="primary-btn">ADD TO CART</a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                         <li><b>Availability</b> <span>@Model.ProductID</span></li>
-                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                        <li><b>Weight</b> <span>0.5 kg</span></li>
-                        @*<li>
-                <b>Share on</b>
-                <div class="share">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                </div>
-            </li>*@
                     </ul>
                 </div>
             </div>
@@ -104,58 +67,39 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                               aria-selected="false">Reviews<span>(1)</span></a>
+                               aria-selected="false">Product Info</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="product__details__tab__desc">
-                                <h6>Products Infomation</h6>
+                                <h6>Description:</h6>
                                 <p>
                                     @Model.Description
-                                </p>
-                                @*<p>
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                    ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                    elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                    porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                    nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
-                                    porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                    sed sit amet dui. Proin eget tortor risus.
-                                </p>*@
+                                </p>                                
                             </div>
                         </div>
                         <div class="tab-pane" id="tabs-2" role="tabpanel">
                             <div class="product__details__tab__desc">
-                                <h6>Planting</h6>
+                                <h6>Planting Instructions:</h6>
                                 <p>
                                     @Model.PlantingInstructions
-                                </p>
-                                @*<p>
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                    ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                    elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                    porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                    nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                </p>*@
+                                </p>                                
                             </div>
                         </div>
                         <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <div class="product__details__tab__desc">
-                                <h6>Products Infomation</h6>
-                                <p>
-                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                    Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                    sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                    eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                    sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                    diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                    Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                    Proin eget tortor risus.
+                            <div class="product__details__tab__desc">                                
+                                <p style="text-align:center;">
+                                    Gene Type: @Html.DisplayFor(model => model.GeneType.GeneName)<br />
+                                    Scientific Name: @Html.DisplayFor(model => model.ScientificName)<br />
+                                    Ideal Temp: @Html.DisplayFor(model => model.IdealTemp.Temp)<br />
+                                    Plant Spacing: @Html.DisplayFor(model => model.PlantSpacing.Spacing)<br />
+                                    Planting Season: @Html.DisplayFor(model => model.Season.SeasonType)<br />
+                                    Life Cycle: @Html.DisplayFor(model => model.LifeCycle.CycleType)<br />
+                                    Minimum Sun (hrs): @Html.DisplayFor(model => model.MinFullSun.SunTime)<br />
+                                    Seeds per Packet: @Html.DisplayFor(model => model.UnitsPerPacket.UnitsID)<br />
+                                    Sprouts in(days): @Html.DisplayFor(model => model.SproutIn.SproutDays)
+
                                 </p>
                             </div>
                         </div>
@@ -166,183 +110,9 @@
     </div>
 </section>
 
-<div class="row">
-    <div class="col-md-4" style="padding:45px 0px 0px 45px;">
-
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.CommonName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CommonName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ScientificName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ScientificName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PlantingInstructions)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PlantingInstructions)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Cost)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Cost)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ImageUrl)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.FrostHardy.FrostID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.FrostHardy.FrostID)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.GeneType.GeneName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.GeneType.GeneName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.IdealTemp.Temp)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.IdealTemp.Temp)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.LifeCycle.CycleType)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.LifeCycle.CycleType)
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4" style="padding-top:45px 45px 45px 45px;">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.MinFullSun.SunTime)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.MinFullSun.SunTime)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PlantSpacing.Spacing)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PlantSpacing.Spacing)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Product.ProductName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Product.ProductName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Season.SeasonType)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Season.SeasonType)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.SeedCategory.CategoryName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SeedCategory.CategoryName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.SeedDepth.DepthID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SeedDepth.DepthID)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.SproutIn.SproutDays)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SproutIn.SproutDays)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.UnitsPerPacket.UnitsID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.UnitsPerPacket.UnitsID)
-            </dd>
-            @*<dd>
-                    @using (Html.BeginForm("AddToCart", "Seeds", new { seedID = Model.SeedID }, FormMethod.Post))
-                    {
-                        @Html.HiddenFor(x => x.SeedID)
-                        //txtbox for qty
-                        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width:75px;display:inline;" })
-                        //submit btn
-                        <input type="submit" value="Add To Cart" class="btn btn-primary" name="qty" />
-                    }
-                </dd>*@
-        </dl>
+    <div class="detailLink">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.SeedID }) |
+        @Html.ActionLink("Back to List", "SeedsMVCPaging", "Filters")
     </div>
 
-    <div class="col-md-4" style="padding:45px 45px;">
-        <img src="~/Content/img/product/@Model.ImageUrl" alt="Seed Cover" title="@Model.CommonName" />
-        @using (Html.BeginForm("AddToCart", "Seeds", new { seedID = Model.SeedID }, FormMethod.Post))
-        {
-            @Html.HiddenFor(x => x.SeedID)
-            //txtbox for qty
-            @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width:75px;display:inline;" })
-            //submit btn
-            <input type="submit" value="Add To Cart" class="btn btn-primary" name="qty" />
-        }
-    </div>
 
-</div>
-<p class="detailLink">
-    @Html.ActionLink("Edit", "Edit", new { @class = "form-control", style = "btn btn-primary", id = Model.SeedID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
