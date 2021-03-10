@@ -283,6 +283,7 @@
     <Content Include="Content\img\product\t_ac62c9ed-a471-4c1b-a407-1aa5e759d862.jpg" />
     <Content Include="Content\img\product\t_cd50d5d9-aa0a-4700-a327-4f76d4a6969c.jpg" />
     <Content Include="Content\img\product\t_eb1dbe09-e3cf-416e-9dbb-9cd8df64b424.jpg" />
+    <Content Include="Content\img\SeedBank Logo2.JPG" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-3.3.1.min.js" />
     <Content Include="Content\js\jquery-ui.min.js" />
