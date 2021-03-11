@@ -1,5 +1,5 @@
-﻿@*@model StoreFront.DATA.EF.Seed*@
-@model PagedList.IPagedList<StoreFront.DATA.EF.Seed>
+﻿@model StoreFront.DATA.EF.Seed
+
 
 @{
     ViewBag.Title = "Create Seed";
@@ -8,7 +8,7 @@
 <h2>@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm("Create", "Seeds", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Filters", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

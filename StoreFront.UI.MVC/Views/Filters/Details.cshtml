@@ -113,18 +113,18 @@
 <div class="detailLink">
     @if (User.IsInRole("Admin"))
     {
-        @Ajax.ActionLink("Delete", "AjaxDelete", "Seeds", new { id = Model.SeedID }, new AjaxOptions
+        @Ajax.ActionLink("Delete", "AjaxDelete", "Filters", new { id = Model.SeedID }, new AjaxOptions
                {
                    HttpMethod = "Post",
                    Confirm = "Are you sure you want to delete " +Model.CommonName + " from seeds?",
                    OnSuccess = "deleteConfirmed"
                })
-       <text> | </text> @Html.ActionLink("Edit", "Edit", new { id = Model.SeedID }) <text> | </text>
+        <text> | </text> @Html.ActionLink("Edit", "Edit", new { id = Model.SeedID }) <text> | </text>
     }
 
     @Html.ActionLink("<< Back to List >>", "SeedsMVCPaging", "Filters")
 </div>
-@*@section scripts{
+@section scripts{
     <script>
         //DeleteConfirmed()
         function deleteConfirmed(response) {
@@ -137,4 +137,4 @@
         }//end deleteConfirmed
     </script>
 
-}*@
+}

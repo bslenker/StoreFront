@@ -532,6 +532,10 @@
     <Content Include="_Archive\Source\sass.zip" />
     <Content Include="_Archive\Source\SlickNav-master.zip" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Filters\Delete.cshtml" />
+    <Content Include="Views\Filters\Details.cshtml" />
+    <Content Include="Views\Filters\Create.cshtml" />
+    <Content Include="Views\Filters\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

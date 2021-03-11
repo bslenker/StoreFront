@@ -10,14 +10,15 @@ using System.Web.Mvc;
 using StoreFront.DATA.EF;//Access to EF and connection
 using StoreFront.UI.MVC.Models;
 using StoreFront.UI.MVC.Utilites;
-using PagedList;//MVC paging
-using PagedList.Mvc;//MVCpaging
+using PagedList.Mvc;
+using PagedList;
+
 
 namespace StoreFront.UI.MVC.Controllers
 {
     public class SeedsController : Controller
     {
-        private StoreFrontEntities db = new StoreFrontEntities();
+        private StoreFrontEntities ctx = new StoreFrontEntities();
 
         #region Paging
         public ActionResult SeedsMVCPaging(string searchString, int page = 1)
@@ -25,7 +26,7 @@ namespace StoreFront.UI.MVC.Controllers
 
             int pageSize = 5;
 
-            var seeds = db.Seeds.OrderBy(s => s.CommonName).ToList();
+            var seeds = ctx.Seeds.OrderBy(s => s.CommonName).ToList();
             #region Search Logic
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -60,7 +61,7 @@ namespace StoreFront.UI.MVC.Controllers
             }//end else
 
             //here get the products object being added
-            Seed product = db.Seeds.Where(s => s.SeedID == seedID).FirstOrDefault();//which will allow a null value
+            Seed product = ctx.Seeds.Where(s => s.SeedID == seedID).FirstOrDefault();//which will allow a null value
             //if productID (seedID) is null, return them to the seeds index
             if(product == null)
             {
@@ -93,56 +94,56 @@ namespace StoreFront.UI.MVC.Controllers
 
         #endregion
 
-        #region QueryString Seeds
-        //Server Side filter - QueryString
-        public ActionResult SeedsQS(string searchFilter)
-        {
-            //2 options
-            //- search has not been used (initial page demand or subsequent demands)
-            //- search has been used and return filtered results
+        //#region QueryString Seeds
+        ////Server Side filter - QueryString
+        //public ActionResult SeedsQS(string searchFilter)
+        //{
+        //    //2 options
+        //    //- search has not been used (initial page demand or subsequent demands)
+        //    //- search has been used and return filtered results
 
-            //get a list of seeds
-            var seeds = db.Seeds;
+        //    //get a list of seeds
+        //    var seeds = ctx.Seeds;
 
-            //branch - no filter
-            if (string.IsNullOrEmpty(searchFilter))
-            {
-                //return all results
-                return View(seeds.ToList());
-            }
-            //branch for Filtered Results
-            else
-            {
-                //searchFilter has some value
-                //return a list of seeds that matches common name
-                //Method/Lambda syntax
-                var filteredSeeds = seeds.Where(s => s.CommonName.ToLower().Contains(searchFilter.ToLower())).ToList();
+        //    //branch - no filter
+        //    if (string.IsNullOrEmpty(searchFilter))
+        //    {
+        //        //return all results
+        //        return View(seeds.ToList());
+        //    }
+        //    //branch for Filtered Results
+        //    else
+        //    {
+        //        //searchFilter has some value
+        //        //return a list of seeds that matches common name
+        //        //Method/Lambda syntax
+        //        var filteredSeeds = seeds.Where(s => s.CommonName.ToLower().Contains(searchFilter.ToLower())).ToList();
 
-                //keyword syntax
-                var filteredSeedKW = (from s in seeds
-                                         where s.CommonName.ToLower().Contains(searchFilter.ToLower())
-                                         select s).ToList();//making this a list make sure the return type is the same as filteredSeeds.
-                //Keyword returning a new anonymous type ...interchangeable with filteredAuthorsKW
-                //this result would need ot be passes via viewbag into an
-                var filteredSeedsKWAnon = from s in seeds
-                                          where s.CommonName.ToLower().Contains(searchFilter.ToLower())
-                                          select new
-                                          {
-                                              SeedName = s.CommonName
-                                          };
+        //        //keyword syntax
+        //        var filteredSeedKW = (from s in seeds
+        //                                 where s.CommonName.ToLower().Contains(searchFilter.ToLower())
+        //                                 select s).ToList();//making this a list make sure the return type is the same as filteredSeeds.
+        //        //Keyword returning a new anonymous type ...interchangeable with filteredAuthorsKW
+        //        //this result would need ot be passes via viewbag into an
+        //        var filteredSeedsKWAnon = from s in seeds
+        //                                  where s.CommonName.ToLower().Contains(searchFilter.ToLower())
+        //                                  select new
+        //                                  {
+        //                                      SeedName = s.CommonName
+        //                                  };
                                                   
 
 
-                return View(filteredSeeds);
-            }//end else
+        //        return View(filteredSeeds);
+        //    }//end else
 
-        }//end ActionResult AuthorsQS()
-        #endregion
+        //}//end ActionResult AuthorsQS()
+        //#endregion
 
         // GET: Seeds
         public ActionResult Index()
         {
-            var seeds = db.Seeds.Include(s => s.FrostHardy).Include(s => s.GeneType).Include(s => s.IdealTemp).Include(s => s.LifeCycle).Include(s => s.MinFullSun).Include(s => s.PlantSpacing).Include(s => s.Product).Include(s => s.Season).Include(s => s.SeedCategory).Include(s => s.SeedDepth).Include(s => s.SproutIn).Include(s => s.UnitsPerPacket);
+            var seeds = ctx.Seeds.Include(s => s.FrostHardy).Include(s => s.GeneType).Include(s => s.IdealTemp).Include(s => s.LifeCycle).Include(s => s.MinFullSun).Include(s => s.PlantSpacing).Include(s => s.Product).Include(s => s.Season).Include(s => s.SeedCategory).Include(s => s.SeedDepth).Include(s => s.SproutIn).Include(s => s.UnitsPerPacket);
             return View(seeds.ToList());
         }
 
@@ -153,7 +154,7 @@ namespace StoreFront.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seed seed = db.Seeds.Find(id);
+            Seed seed = ctx.Seeds.Find(id);
             if (seed == null)
             {
                 return HttpNotFound();
@@ -164,18 +165,18 @@ namespace StoreFront.UI.MVC.Controllers
         // GET: Seeds/Create
         public ActionResult Create()
         {
-            ViewBag.FrostID = new SelectList(db.FrostHardys, "FrostID", "FrostID");
-            ViewBag.GeneID = new SelectList(db.GeneTypes, "GeneID", "GeneName");
-            ViewBag.TempID = new SelectList(db.IdealTemps, "TempID", "Temp");
-            ViewBag.CycleID = new SelectList(db.LifeCycles, "CycleID", "CycleType");
-            ViewBag.SunID = new SelectList(db.MinFullSuns, "SunID", "SunTime");
-            ViewBag.SpacingID = new SelectList(db.PlantSpacings, "SpacingID", "Spacing");
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName");
-            ViewBag.SeasonID = new SelectList(db.Seasons, "SeasonID", "SeasonType");
-            ViewBag.CategoryID = new SelectList(db.SeedCategories, "CategoryID", "CategoryName");
-            ViewBag.DepthID = new SelectList(db.SeedDepths, "DepthID", "DepthID");
-            ViewBag.SproutID = new SelectList(db.SproutIns, "SproutID", "SproutDays");
-            ViewBag.UnitsID = new SelectList(db.UnitsPerPackets, "UnitsID", "UnitsID");
+            ViewBag.FrostID = new SelectList(ctx.FrostHardys, "FrostID", "FrostID");
+            ViewBag.GeneID = new SelectList(ctx.GeneTypes, "GeneID", "GeneName");
+            ViewBag.TempID = new SelectList(ctx.IdealTemps, "TempID", "Temp");
+            ViewBag.CycleID = new SelectList(ctx.LifeCycles, "CycleID", "CycleType");
+            ViewBag.SunID = new SelectList(ctx.MinFullSuns, "SunID", "SunTime");
+            ViewBag.SpacingID = new SelectList(ctx.PlantSpacings, "SpacingID", "Spacing");
+            ViewBag.ProductID = new SelectList(ctx.Products, "ProductID", "ProductName");
+            ViewBag.SeasonID = new SelectList(ctx.Seasons, "SeasonID", "SeasonType");
+            ViewBag.CategoryID = new SelectList(ctx.SeedCategories, "CategoryID", "CategoryName");
+            ViewBag.DepthID = new SelectList(ctx.SeedDepths, "DepthID", "DepthID");
+            ViewBag.SproutID = new SelectList(ctx.SproutIns, "SproutID", "SproutDays");
+            ViewBag.UnitsID = new SelectList(ctx.UnitsPerPackets, "UnitsID", "UnitsID");
             return View();
         }
 
@@ -210,7 +211,7 @@ namespace StoreFront.UI.MVC.Controllers
                     {
                         //If both are good rename the file using a guid + the extension
                         //GUID = Global Unique IDentifier
-                        //-other ways to create unique ids (make sure your DB field accomodates the size)
+                        //-other ways to create unique ids (make sure your ctx field accomodates the size)
                         //substring the book title (first 10/20 characters, concatonate the currernt userID , datetimestamp)
                         //Guid works well but it is not the only option.
                         imgName = Guid.NewGuid() + ext.ToLower();
@@ -241,23 +242,23 @@ namespace StoreFront.UI.MVC.Controllers
                 #endregion
 
 
-                db.Seeds.Add(seed);
-                db.SaveChanges();
+                ctx.Seeds.Add(seed);
+                ctx.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FrostID = new SelectList(db.FrostHardys, "FrostID", "FrostID", seed.FrostID);
-            ViewBag.GeneID = new SelectList(db.GeneTypes, "GeneID", "GeneName", seed.GeneID);
-            ViewBag.TempID = new SelectList(db.IdealTemps, "TempID", "Temp", seed.TempID);
-            ViewBag.CycleID = new SelectList(db.LifeCycles, "CycleID", "CycleType", seed.CycleID);
-            ViewBag.SunID = new SelectList(db.MinFullSuns, "SunID", "SunTime", seed.SunID);
-            ViewBag.SpacingID = new SelectList(db.PlantSpacings, "SpacingID", "Spacing", seed.SpacingID);
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", seed.ProductID);
-            ViewBag.SeasonID = new SelectList(db.Seasons, "SeasonID", "SeasonType", seed.SeasonID);
-            ViewBag.CategoryID = new SelectList(db.SeedCategories, "CategoryID", "CategoryName", seed.CategoryID);
-            ViewBag.DepthID = new SelectList(db.SeedDepths, "DepthID", "DepthID", seed.DepthID);
-            ViewBag.SproutID = new SelectList(db.SproutIns, "SproutID", "SproutDays", seed.SproutID);
-            ViewBag.UnitsID = new SelectList(db.UnitsPerPackets, "UnitsID", "UnitsID", seed.UnitsID);
+            ViewBag.FrostID = new SelectList(ctx.FrostHardys, "FrostID", "FrostID", seed.FrostID);
+            ViewBag.GeneID = new SelectList(ctx.GeneTypes, "GeneID", "GeneName", seed.GeneID);
+            ViewBag.TempID = new SelectList(ctx.IdealTemps, "TempID", "Temp", seed.TempID);
+            ViewBag.CycleID = new SelectList(ctx.LifeCycles, "CycleID", "CycleType", seed.CycleID);
+            ViewBag.SunID = new SelectList(ctx.MinFullSuns, "SunID", "SunTime", seed.SunID);
+            ViewBag.SpacingID = new SelectList(ctx.PlantSpacings, "SpacingID", "Spacing", seed.SpacingID);
+            ViewBag.ProductID = new SelectList(ctx.Products, "ProductID", "ProductName", seed.ProductID);
+            ViewBag.SeasonID = new SelectList(ctx.Seasons, "SeasonID", "SeasonType", seed.SeasonID);
+            ViewBag.CategoryID = new SelectList(ctx.SeedCategories, "CategoryID", "CategoryName", seed.CategoryID);
+            ViewBag.DepthID = new SelectList(ctx.SeedDepths, "DepthID", "DepthID", seed.DepthID);
+            ViewBag.SproutID = new SelectList(ctx.SproutIns, "SproutID", "SproutDays", seed.SproutID);
+            ViewBag.UnitsID = new SelectList(ctx.UnitsPerPackets, "UnitsID", "UnitsID", seed.UnitsID);
             return View(seed);
         }
 
@@ -268,23 +269,23 @@ namespace StoreFront.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seed seed = db.Seeds.Find(id);
+            Seed seed = ctx.Seeds.Find(id);
             if (seed == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.FrostID = new SelectList(db.FrostHardys, "FrostID", "FrostID", seed.FrostID);
-            ViewBag.GeneID = new SelectList(db.GeneTypes, "GeneID", "GeneName", seed.GeneID);
-            ViewBag.TempID = new SelectList(db.IdealTemps, "TempID", "Temp", seed.TempID);
-            ViewBag.CycleID = new SelectList(db.LifeCycles, "CycleID", "CycleType", seed.CycleID);
-            ViewBag.SunID = new SelectList(db.MinFullSuns, "SunID", "SunTime", seed.SunID);
-            ViewBag.SpacingID = new SelectList(db.PlantSpacings, "SpacingID", "Spacing", seed.SpacingID);
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", seed.ProductID);
-            ViewBag.SeasonID = new SelectList(db.Seasons, "SeasonID", "SeasonType", seed.SeasonID);
-            ViewBag.CategoryID = new SelectList(db.SeedCategories, "CategoryID", "CategoryName", seed.CategoryID);
-            ViewBag.DepthID = new SelectList(db.SeedDepths, "DepthID", "DepthID", seed.DepthID);
-            ViewBag.SproutID = new SelectList(db.SproutIns, "SproutID", "SproutDays", seed.SproutID);
-            ViewBag.UnitsID = new SelectList(db.UnitsPerPackets, "UnitsID", "UnitsID", seed.UnitsID);
+            ViewBag.FrostID = new SelectList(ctx.FrostHardys, "FrostID", "FrostID", seed.FrostID);
+            ViewBag.GeneID = new SelectList(ctx.GeneTypes, "GeneID", "GeneName", seed.GeneID);
+            ViewBag.TempID = new SelectList(ctx.IdealTemps, "TempID", "Temp", seed.TempID);
+            ViewBag.CycleID = new SelectList(ctx.LifeCycles, "CycleID", "CycleType", seed.CycleID);
+            ViewBag.SunID = new SelectList(ctx.MinFullSuns, "SunID", "SunTime", seed.SunID);
+            ViewBag.SpacingID = new SelectList(ctx.PlantSpacings, "SpacingID", "Spacing", seed.SpacingID);
+            ViewBag.ProductID = new SelectList(ctx.Products, "ProductID", "ProductName", seed.ProductID);
+            ViewBag.SeasonID = new SelectList(ctx.Seasons, "SeasonID", "SeasonType", seed.SeasonID);
+            ViewBag.CategoryID = new SelectList(ctx.SeedCategories, "CategoryID", "CategoryName", seed.CategoryID);
+            ViewBag.DepthID = new SelectList(ctx.SeedDepths, "DepthID", "DepthID", seed.DepthID);
+            ViewBag.SproutID = new SelectList(ctx.SproutIns, "SproutID", "SproutDays", seed.SproutID);
+            ViewBag.UnitsID = new SelectList(ctx.UnitsPerPackets, "UnitsID", "UnitsID", seed.UnitsID);
             return View(seed);
         }
 
@@ -328,58 +329,58 @@ namespace StoreFront.UI.MVC.Controllers
                     }//end if
                 }
                 #endregion
-                db.Entry(seed).State = EntityState.Modified;
-                db.SaveChanges();
+                ctx.Entry(seed).State = EntityState.Modified;
+                ctx.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.FrostID = new SelectList(db.FrostHardys, "FrostID", "FrostID", seed.FrostID);
-            ViewBag.GeneID = new SelectList(db.GeneTypes, "GeneID", "GeneName", seed.GeneID);
-            ViewBag.TempID = new SelectList(db.IdealTemps, "TempID", "Temp", seed.TempID);
-            ViewBag.CycleID = new SelectList(db.LifeCycles, "CycleID", "CycleType", seed.CycleID);
-            ViewBag.SunID = new SelectList(db.MinFullSuns, "SunID", "SunTime", seed.SunID);
-            ViewBag.SpacingID = new SelectList(db.PlantSpacings, "SpacingID", "Spacing", seed.SpacingID);
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", seed.ProductID);
-            ViewBag.SeasonID = new SelectList(db.Seasons, "SeasonID", "SeasonType", seed.SeasonID);
-            ViewBag.CategoryID = new SelectList(db.SeedCategories, "CategoryID", "CategoryName", seed.CategoryID);
-            ViewBag.DepthID = new SelectList(db.SeedDepths, "DepthID", "DepthID", seed.DepthID);
-            ViewBag.SproutID = new SelectList(db.SproutIns, "SproutID", "SproutDays", seed.SproutID);
-            ViewBag.UnitsID = new SelectList(db.UnitsPerPackets, "UnitsID", "UnitsID", seed.UnitsID);
+            ViewBag.FrostID = new SelectList(ctx.FrostHardys, "FrostID", "FrostID", seed.FrostID);
+            ViewBag.GeneID = new SelectList(ctx.GeneTypes, "GeneID", "GeneName", seed.GeneID);
+            ViewBag.TempID = new SelectList(ctx.IdealTemps, "TempID", "Temp", seed.TempID);
+            ViewBag.CycleID = new SelectList(ctx.LifeCycles, "CycleID", "CycleType", seed.CycleID);
+            ViewBag.SunID = new SelectList(ctx.MinFullSuns, "SunID", "SunTime", seed.SunID);
+            ViewBag.SpacingID = new SelectList(ctx.PlantSpacings, "SpacingID", "Spacing", seed.SpacingID);
+            ViewBag.ProductID = new SelectList(ctx.Products, "ProductID", "ProductName", seed.ProductID);
+            ViewBag.SeasonID = new SelectList(ctx.Seasons, "SeasonID", "SeasonType", seed.SeasonID);
+            ViewBag.CategoryID = new SelectList(ctx.SeedCategories, "CategoryID", "CategoryName", seed.CategoryID);
+            ViewBag.DepthID = new SelectList(ctx.SeedDepths, "DepthID", "DepthID", seed.DepthID);
+            ViewBag.SproutID = new SelectList(ctx.SproutIns, "SproutID", "SproutDays", seed.SproutID);
+            ViewBag.UnitsID = new SelectList(ctx.UnitsPerPackets, "UnitsID", "UnitsID", seed.UnitsID);
             return View(seed);
         }
 
-        // GET: Seeds/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Seed seed = db.Seeds.Find(id);
-            if (seed == null)
-            {
-                return HttpNotFound();
-            }
-            return View(seed);
-        }
+        //// GET: Seeds/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Seed seed = ctx.Seeds.Find(id);
+        //    if (seed == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(seed);
+        //}
 
-        // POST: Seeds/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Seed seed = db.Seeds.Find(id);
-            db.Seeds.Remove(seed);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Seeds/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Seed seed = ctx.Seeds.Find(id);
+        //    ctx.Seeds.Remove(seed);
+        //    ctx.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        ctx.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

@@ -42,7 +42,7 @@
                                 <label for="searchFilter">Search:</label>
                             </div>
                             <div class="col-md-6" style="padding: .5em; height:30px; width:508px;">
-                                @Html.TextBox("SearchString","Enter Seed Name", ViewBag.SearchString as string)
+                                @Html.TextBox("SearchString", "Enter Seed Name", ViewBag.SearchString as string)
                             </div>
                             <div class="col-md-2">
                                 <input type="submit" value="Search" class="primary-btn" />
@@ -50,9 +50,16 @@
                             <div class="col-md-2">
                                 @Html.ActionLink("Reset", "SeedsMVCPaging", "Filters", null, new { @class = "btn btn-danger" })
                             </div>
+
                         </div>
                     }
-                    @Html.PagedListPager(Model, page => Url.Action("PagingMVCPaging", new { page, searchString = ViewBag.SearchString }))
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <p>
+                            @Html.ActionLink("Create New", "Create", "Filters")
+                        </p>
+                    }
+                    @Html.PagedListPager(Model, page => Url.Action("SeedsMVCPaging", new { page, searchString = ViewBag.SearchString }))
                     <div class="row">
                         @foreach (var item in Model)
                         {
@@ -61,8 +68,7 @@
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="/Content/img/product/@item.ImageUrl">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="@Url.Action("Details", "Seeds", new { id = item.SeedID })"><i class="fa fa-info-circle"></i></a></li>
+                                            <li><a href="@Url.Action("Details", "Filters", new { id = item.SeedID })"><i class="fa fa-info-circle"></i></a></li>
                                             <li>
                                                 <a href="@Url.Action("Index","ShoppingCart","ShoppingCart")"><i class="fa fa-shopping-cart"></i></a>
                                             </li>
@@ -70,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="@Url.Action("Details", "Seeds", new { id = item.SeedID })">@Html.DisplayFor(modelItem => item.CommonName)</a></h6>
+                                    <h6><a href="@Url.Action("Details", "Filters", new { id = item.SeedID })">@Html.DisplayFor(modelItem => item.CommonName)</a></h6>
                                     <h5>@Html.DisplayFor(modelItem => item.Cost)</h5>
                                 </div>
                             </div>
