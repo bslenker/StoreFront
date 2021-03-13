@@ -3,8 +3,8 @@
 
 @{ 
     string currentUserId = User.Identity.GetUserId();
-    StoreFrontEntities ctn = new StoreFrontEntities();
-    UserDetail ud = ctn.UserDetails.Where(u => u.UserID == currentUserId).FirstOrDefault();
+    StoreFrontEntities ctx = new StoreFrontEntities();
+    UserDetail ud = ctx.UserDetails.Where(u => u.UserID == currentUserId).FirstOrDefault();
     string greet = "Guest";
     string favColor = "#FFF";
     if(ud !=null)

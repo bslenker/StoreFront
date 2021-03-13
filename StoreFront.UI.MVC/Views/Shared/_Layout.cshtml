@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
-
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 
     @RenderSection("styles", required: false)
@@ -311,7 +311,7 @@
         $(function () {
             $('.header__menu li a').each(function () {
                 if ($(this).attr('href') == window.location.pathname) {
-                    $(this).addClass('active');
+                    $(this).addClass('active-page');
                 }
             });
         });

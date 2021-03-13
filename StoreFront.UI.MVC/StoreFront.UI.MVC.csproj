@@ -284,6 +284,7 @@
     <Content Include="Content\img\product\t_cd50d5d9-aa0a-4700-a327-4f76d4a6969c.jpg" />
     <Content Include="Content\img\product\t_eb1dbe09-e3cf-416e-9dbb-9cd8df64b424.jpg" />
     <Content Include="Content\img\SeedBank Logo2.JPG" />
+    <Content Include="Content\img\thumbs-up-pink-flower-character-cartoon.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-3.3.1.min.js" />
     <Content Include="Content\js\jquery-ui.min.js" />
@@ -421,13 +422,6 @@
     <Content Include="Content\sass\_sidebar.scss" />
     <Content Include="Content\sass\_variable.scss" />
     <Content Include="Content\sass\style.scss" />
-    <Content Include="Content\Source\bootstrap-4.4.1-dist.zip" />
-    <Content Include="Content\Source\font-awesome-4.7.0.zip" />
-    <Content Include="Content\Source\jquery-nice-select-1.1.0.zip" />
-    <Content Include="Content\Source\jquery-ui-1.12.1.zip" />
-    <Content Include="Content\Source\OwlCarousel2-2.3.4.zip" />
-    <Content Include="Content\Source\sass.zip" />
-    <Content Include="Content\Source\SlickNav-master.zip" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -51,15 +51,22 @@ namespace StoreFront.UI.MVC.Controllers
         {
 
             int pageSize = 9;
-
+            Exception e;
+            
             var seeds = ctx.Seeds.OrderBy(s => s.CommonName).ToList();
             #region Search Logic
-            if (!string.IsNullOrEmpty(searchString))
+            try
             {
-                seeds = seeds.Where(s => s.CommonName.ToLower().Contains(searchString.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    seeds = seeds.Where(s => s.CommonName.ToLower().Contains(searchString.ToLower())).ToList();
 
+                }
             }
-
+            catch 
+            {
+                throw e = new Exception("Enter text in the text field.");
+            }
             ViewBag.SearchString = searchString;
             #endregion
             return View(seeds.ToPagedList(page, pageSize));

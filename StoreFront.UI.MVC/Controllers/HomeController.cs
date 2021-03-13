@@ -68,10 +68,10 @@ namespace StoreFront.UI.MVC.Controllers
             mm.ReplyToList.Add(cvm.Email);
 
             //StmpClient - the information from the HOST(SmarterASP.net) that allows the email to actually be sent.
-            SmtpClient client = new SmtpClient("mail.benslenker.com");
+            SmtpClient client = new SmtpClient("mail.example.com");
 
             //client Credentials
-            client.Credentials = new NetworkCredential("admin@benslenker.com", "Chewy13@");
+            client.Credentials = new NetworkCredential("admin@example.com", "P@ssw0rd");
 
             //client.Port = 8889;//sets a different port incase ISP blocks a certain port.
             //it is possible that the mailserver is down or we mayu have configuration issues, so we want to encapsulate our code in a try/catch structure.

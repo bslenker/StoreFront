@@ -38,7 +38,7 @@
                     @using (Html.BeginForm("SeedsMVCPaging", "Filters", FormMethod.Get))
                     {
                         <div class="row">
-                            <div class="col-md-2 text-right" style="padding: .5em; font-weight:700;">
+                            <div class="col-md-2 text-right" style="padding: .5em; font-size:x-large; font-weight:700;">
                                 <label for="searchFilter">Search:</label>
                             </div>
                             <div class="col-md-6" style="padding: .5em; height:30px; width:508px;">
@@ -59,7 +59,8 @@
                             @Html.ActionLink("Create New", "Create", "Filters")
                         </p>
                     }
-                    @Html.PagedListPager(Model, page => Url.Action("SeedsMVCPaging", new { page, searchString = ViewBag.SearchString }))
+
+                        <nav aria-label="Search results pages"> @Html.PagedListPager(Model, page => Url.Action("SeedsMVCPaging", new { page, searchString = ViewBag.SearchString }))</nav>
                     <div class="row">
                         @foreach (var item in Model)
                         {
@@ -70,7 +71,7 @@
                                         <ul class="product__item__pic__hover">
                                             <li><a href="@Url.Action("Details", "Filters", new { id = item.SeedID })"><i class="fa fa-info-circle"></i></a></li>
                                             <li>
-                                                <a href="@Url.Action("Index","ShoppingCart","ShoppingCart")"><i class="fa fa-shopping-cart"></i></a>
+                                                @*<a href="@Url.Action("Index","ShoppingCart","ShoppingCart")"><i class="fa fa-shopping-cart"></i></a>*@
                                             </li>
                                         </ul>
                                     </div>
