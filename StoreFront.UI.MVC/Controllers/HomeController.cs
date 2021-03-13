@@ -52,9 +52,9 @@ namespace StoreFront.UI.MVC.Controllers
             //MailMessage object (what send the email from ASP.NET application - ADD USING STATEMENT FOR SYSTEM.NET.MAIL
             MailMessage mm = new MailMessage(
                 //FROM
-                "admin@benslenker.com",
+                "administration@example.com",
                 //To - this assumes forwarding from the host
-                "slenkerbenjamin@gmail.com", //hardcoded forward to this email address
+                "sample@mail.com", //hardcoded forward to this email address
                                              //SUBJECT
                 cvm.Subject,
                 //BODY
@@ -71,7 +71,7 @@ namespace StoreFront.UI.MVC.Controllers
             SmtpClient client = new SmtpClient("mail.example.com");
 
             //client Credentials
-            client.Credentials = new NetworkCredential("admin@example.com", "P@ssw0rd");
+            client.Credentials = new NetworkCredential("administration@example.com", "P@ssw0rd");
 
             //client.Port = 8889;//sets a different port incase ISP blocks a certain port.
             //it is possible that the mailserver is down or we mayu have configuration issues, so we want to encapsulate our code in a try/catch structure.
