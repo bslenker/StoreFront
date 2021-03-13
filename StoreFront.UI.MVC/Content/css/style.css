@@ -96,9 +96,9 @@ textarea:focus {
 
 a:hover,
 a:focus {
-	text-decoration: none;
-	outline: none;
-	color: #ffffff;
+    text-decoration: none;
+    outline: none;
+    color: #7fad39;
 }
 
 ul,
@@ -342,7 +342,7 @@ ol {
 }
 
 .header__top__left {
-	padding: 10px 0 13px;
+	padding: 31px 0 13px;
 }
 
 .header__top__left ul li {
@@ -351,6 +351,7 @@ ol {
 	display: inline-block;
 	margin-right: 45px;
 	position: relative;
+    font-weight:600;
 }
 
 .header__top__left ul li:after {
@@ -601,11 +602,12 @@ ol {
 .header__menu ul li .header__menu__dropdown li {
 	margin-right: 0;
 	display: block;
+    
 }
 
-.header__menu ul li .header__menu__dropdown li:hover>a {
-	color: #7fad39;
-}
+    .header__menu ul li .header__menu__dropdown li:hover > a {
+        color: #bb5e44;
+    }
 
 .header__menu ul li .header__menu__dropdown li a {
 	text-transform: capitalize;
@@ -614,8 +616,12 @@ ol {
 	padding: 5px 15px;
 }
 
-.header__menu ul li.active a {
-	color: #7fad39;
+    /*.header__menu ul li.active a {
+        color: #7fad39;
+    }*/
+
+.active {
+    background-color: #bb5e44;
 }
 
 .header__menu ul li:hover .header__menu__dropdown {
@@ -624,8 +630,8 @@ ol {
 	visibility: visible;
 }
 
-.header__menu ul li:hover>a {
-	color: #7fad39;
+.header__menu ul li:hover > a {
+    color: #7fad39;
 }
 
 .header__menu ul li:last-child {
@@ -633,18 +639,19 @@ ol {
 }
 
 .header__menu ul li a {
-	font-size: 18px;
-	color: #252525;
-	text-transform: uppercase;
-	font-weight: 700;
-	letter-spacing: 3px;
-	-webkit-transition: all, 0.3s;
-	-moz-transition: all, 0.3s;
-	-ms-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-	padding: 5px 0;
-	display: block;
+    font-size: 18px;
+    color: #252525;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 3px;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+    padding: 5px 0;
+    display: block;
+    border-radius: .5em;
 }
 
 .header__cart {
@@ -2783,7 +2790,7 @@ input[type="text"], textarea {
 
 .footer {
 	background: #F3F6FA;
-	padding-top: 70px;
+	padding-top: 25px;
 	padding-bottom: 0;
 }
 
@@ -2863,25 +2870,27 @@ input[type="text"], textarea {
 	padding: 0 26px;
 	height: 100%;
 }
-
-.footer__widget .footer__widget__social a {
-	display: inline-block;
-	height: 41px;
-	width: 41px;
-	font-size: 16px;
-	color: #404040;
-	border: 1px solid #ededed;
-	border-radius: 50%;
-	line-height: 38px;
-	text-align: center;
-	background: #ffffff;
-	-webkit-transition: all, 0.3s;
-	-moz-transition: all, 0.3s;
-	-ms-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-	margin-right: 10px;
-}
+    .footer__widget .footer__widget__social{
+        float:right;
+    }
+    .footer__widget .footer__widget__social a {
+        display: inline-block;
+        height: 41px;
+        width: 41px;
+        font-size: 16px;
+        color: #404040;
+        border: 1px solid #ededed;
+        border-radius: 50%;
+        line-height: 38px;
+        text-align: center;
+        background: #ffffff;
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s;
+        margin-right: 10px;
+    }
 
 .footer__widget .footer__widget__social a:last-child {
 	margin-right: 0;

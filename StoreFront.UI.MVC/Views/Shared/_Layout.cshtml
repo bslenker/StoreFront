@@ -148,19 +148,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>
-                                @*<ul>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                               aria-expanded="false">Login</a>
-                                            <div class="dropdown-menu account-dropdown" style="background-color: gray;">
-                                                @Html.Partial("_LoginPartial")
-                                            </div>
-                                        </li>
-                                    </ul>*@
-
-                                @*<i class="fa fa-user"></i>@Html.Partial("_LoginPartial")*@
-                                @*<a href="#"><i class="fa fa-user"></i> Login</a>*@
+                                </div>                                
                             </div>
                         </div>
                     </div>
@@ -178,8 +166,8 @@
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
-                        <ul>
-                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        <ul >
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                             <li><a href="@Url.Action("SeedsMVCPaging", "Filters")">Shop'Em Seeds</a></li>
                             <li><a href="@Url.Action("Contact" , "Home")">Contact</a></li>
                         </ul>
@@ -250,17 +238,17 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="@Url.Action("Index", "Home")" img src="~/Content/img/logo.png" alt=""></a>
+                            <a href="@Url.Action("Index", "Home")"><img src="~/Content/img/SeedBank Logo2.JPG" /></a>
                         </div>
-                        @*<ul>
+                        <ul>
                                 <li>Address: Drexel, MO</li>
                                 <li>Phone: 800-321-1234</li>
-                                <li>Email: admin@seedbank.com</li>
-                            </ul>*@
+                                <li><a href="@Url.Action("Contact" , "Home")">Email: admin@theseedbank.com</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-12 col-md-12">
                 <div class="footer__widget">
                     @*<h6>Join Our Newsletter Now</h6>*@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
@@ -319,7 +307,17 @@
     <script type="text/javascript" src="~/Scripts/main.js"></script>
     <!--Ajax Script-->
     <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $(function () {
+            $('.header__menu li a').each(function () {
+                if ($(this).attr('href') == window.location.pathname) {
+                    $(this).addClass('active');
+                }
+            });
+        });
 
+
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>
