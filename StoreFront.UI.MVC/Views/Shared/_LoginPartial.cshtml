@@ -5,7 +5,7 @@
     string currentUserId = User.Identity.GetUserId();
     StoreFrontEntities ctx = new StoreFrontEntities();
     UserDetail ud = ctx.UserDetails.Where(u => u.UserID == currentUserId).FirstOrDefault();
-    string greet = "Guest";
+    string greet = "Admin";
     string favColor = "#FFF";
     if(ud !=null)
     {

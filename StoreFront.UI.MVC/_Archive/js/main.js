@@ -39,6 +39,28 @@
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
+    /********************
+     *  Custom Data-setbg link
+     * *******************/
+    function makeProduct__ItemClickable() {
+        var cells = document.getElementsByTagName('product__item__pic set-bg')
+        for (var i = 0, cell; cell = cells[i]; i++) {
+            if (cell.className != 'product__item__pic set-bg') continue
+            var caseId = cell.innerHTML
+            cell.innerHTML = ''
+            var link = document.createElement('a')
+            link.href = 'http://www.benslenker.com' + caseId
+            link.appendChild(document.createTextNode(caseId))
+            cell.appendChild(link)
+        }
+    }
+
+
+    //$('.product__item__pic setbg').each(function () {
+    //    var link = $(this).html('');
+    //    $(this).contents().wrap('<a href="@Url.Action("Details", "Filters", new { id = item.SeedID })"></a>');
+    //});
+
     //Humberger Menu
     $(".humberger__open").on('click', function () {
         $(".humberger__menu__wrapper").addClass("show__humberger__menu__wrapper");

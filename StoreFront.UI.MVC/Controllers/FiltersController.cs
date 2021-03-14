@@ -51,7 +51,7 @@ namespace StoreFront.UI.MVC.Controllers
         {
 
             int pageSize = 9;
-            Exception e;
+            
             
             var seeds = ctx.Seeds.OrderBy(s => s.CommonName).ToList();
             #region Search Logic
@@ -178,7 +178,10 @@ namespace StoreFront.UI.MVC.Controllers
 
                         //Resize the image
                         //provide all requirements  to call the ResizeImage() from the utility. SavePath, Image, MaxImageSize, MaxThumbSize
-                        string savePath = Server.MapPath("~/Content/img/product/");
+                        
+                            string savePath = Server.MapPath("~/Content/img/product/");
+                        
+                        
                         Image convertedImage = Image.FromStream(seedPacket.InputStream);//methodology to pull in that file and grabbing the input string
                         int maxImageSize = 500;
                         int maxThumbSize = 100;
@@ -195,13 +198,19 @@ namespace StoreFront.UI.MVC.Controllers
                 }//end if
                 //no matter what - add the imageName property of the book object to send to the DB.
                 seed.ImageUrl = imgName;
-
-
                 #endregion
-
-
-                ctx.Seeds.Add(seed);
-                ctx.SaveChanges();
+                #region Exception TRY/CATCH
+                Exception e;
+                try
+                {
+                    ctx.Seeds.Add(seed);
+                    ctx.SaveChanges();
+                }
+                catch (Exception exception)
+                {
+                    throw e = new Exception($"{exception.GetType()}\n{exception.Message}");
+                }
+                #endregion
                 return RedirectToAction("SeedsMVCPaging");
             }
 

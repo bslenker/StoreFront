@@ -1774,6 +1774,7 @@ ol {
 
 .product__item__text h6 a {
 	color: #252525;
+    text-decoration:underline
 }
 
 .product__item__text h5 {
