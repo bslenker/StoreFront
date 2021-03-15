@@ -49,7 +49,7 @@
                     var prodCount = prods.Sum(p => p.Value.Qty);
                     <li>
                         <a href="/ShoppingCart/Index">
-                            @*Cart*@<i class="fa fa-shopping-bag"></i>
+                            Cart<i class="fa fa-shopping-bag"></i>
                             <sup style="color:white; background-color:#7fad39;
                                                         height: 13px;
                                                         width: 13px;
@@ -97,9 +97,9 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                <li><a href="@Url.Action("Index", "Seeds")">Shop</a></li>
-                <li><a href="/ShoppingCart/Index">Shopping Cart</a></li>
+                <li><a href="@Url.Action("SeedsMVCPaging", "Filters")">Shop</a></li>                
                 <li><a href="@Url.Action("Contact" , "Home")">Contact</a></li>
+                <li>Login:@Html.Partial("_LoginPartial")</li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -189,7 +189,7 @@
                                 var prodCount = prods.Sum(p => p.Value.Qty);
                                 <li>
                                     <a href="/ShoppingCart/Index">
-                                        Cart<i class="fa fa-shopping-bag"></i>
+                                        Cart <i class="fa fa-shopping-bag"></i>
                                         <sup style="color:white; background-color:#7fad39;
                                                         height: 13px;
                                                         width: 13px;

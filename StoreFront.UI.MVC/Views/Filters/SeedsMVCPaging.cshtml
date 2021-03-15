@@ -37,12 +37,12 @@
 
                     @using (Html.BeginForm("SeedsMVCPaging", "Filters", FormMethod.Get))
                     {
-                        <div class="row">
+                        <div class="row" id="search">
                             <div class="col-md-2 text-right" style="padding: .5em; font-size:x-large; font-weight:700;">
                                 <label for="searchFilter">Search:</label>
                             </div>
                             <div class="col-md-6" style="padding: .5em; height:30px; width:508px;">
-                                @Html.TextBox("SearchString", "Enter Seed Name", ViewBag.SearchString as string)
+                                @Html.TextBox("SearchString", ViewBag.SearchString as string)
                             </div>
                             <div class="col-md-2">
                                 <input type="submit" value="Search" class="primary-btn" />
